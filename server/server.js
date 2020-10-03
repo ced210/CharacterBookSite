@@ -6,9 +6,10 @@ const app = express();
 
 var corsOptions = {
   origin:
-    process.env.NODE_ENV !== "production"
-      ? "http://localhost:8080"
-      : "https://characterbook-api.azurewebsites.net",
+    // process.env.NODE_ENV === "production"
+    //   ? "https://characterbook-api.azurewebsites.net"
+    //   : "http://localhost:8080",
+    true,
 };
 
 app.use(cors(corsOptions));
