@@ -1,5 +1,6 @@
 <template>
   <div class="about">
+    <p>{{ process.env.NODE_ENV }}</p>
     <h1>le pourquoi que j'ai fait ca, c'est ca que tu peut mettre</h1>
     <p>{{ races }}</p>
   </div>
