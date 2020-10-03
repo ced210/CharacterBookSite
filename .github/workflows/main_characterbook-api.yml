@@ -22,7 +22,7 @@ jobs:
 
     - name: npm start:build
       run: |
-        npm ci
+        npm i
         npm run start:build
 
     - name: 'Deploy to Azure Web App'
