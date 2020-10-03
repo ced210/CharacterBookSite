@@ -1,4 +1,4 @@
-process.env.NODE_ENV = process.env.NODE_ENV || "dev";
+process.env.NODE_ENV = process.env.NODE_ENV || "developpement";
 
 let HOST = "localhost";
 let USER = "root";

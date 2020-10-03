@@ -26,11 +26,6 @@ db.sequelize.sync();
 //   console.log("Drop and re-sync db.");
 // });
 
-// // simple route
-// app.get("/", (req, res) => {
-//   res.json({ message: "Welcome to bezkoder application." });
-// });
-
 require("./routes/race.routes")(app);
 require("./routes/class.routes")(app);
 const fn = async () => {
@@ -48,6 +43,12 @@ fn();
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8081;
+
+// simple route
+app.get("/", cors(), (req, res) => {
+  res.json({ message: `Welcome PORT${PORT} ENV:${process.env.NODE_ENV}` });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
