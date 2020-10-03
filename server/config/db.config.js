@@ -3,10 +3,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || "dev";
 let HOST = "localhost";
 let USER = "root";
 if (process.env.NODE_ENV === "test") {
-} else if (process.env.NODE_ENV === "prod") {
+} else if (process.env.NODE_ENV === "production") {
   HOST = "characterbook.mysql.database.azure.com";
   USER = "admin210@characterbook";
-} else if (process.env.NODE_ENV === "dev") {
+} else if (process.env.NODE_ENV === "developpement") {
   HOST = "localhost";
   USER = "root";
 }

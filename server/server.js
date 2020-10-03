@@ -5,7 +5,10 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:8080",
+  origin:
+    process.env.NODE_ENV !== "production"
+      ? "http://localhost:8080"
+      : "https://characterbook-api.azurewebsites.net",
 };
 
 app.use(cors(corsOptions));
