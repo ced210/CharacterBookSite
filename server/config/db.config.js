@@ -2,10 +2,12 @@ process.env.NODE_ENV = process.env.NODE_ENV || "developpement";
 
 let HOST = "localhost";
 let USER = "root";
+let PASSWORD = "!Book!17";
 if (process.env.NODE_ENV === "test") {
 } else if (process.env.NODE_ENV === "production") {
   HOST = "characterbook.mysql.database.azure.com";
   USER = "admin210@characterbook";
+  PASSWORD = "!Book!17";
 } else if (process.env.NODE_ENV === "developpement") {
   HOST = "localhost";
   USER = "root";
@@ -13,7 +15,7 @@ if (process.env.NODE_ENV === "test") {
 module.exports = {
   HOST: HOST,
   USER: USER,
-  PASSWORD: "Anubis210",
+  PASSWORD: PASSWORD,
   DB: "characterbook",
   dialect: "mysql",
   port: 3306,
