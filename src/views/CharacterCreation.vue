@@ -28,6 +28,7 @@
       <v-stepper-content step="3">
         <v-card>
           <v-card-title>Choose Your Background</v-card-title>
+          <v-card-text>Work In Progress...</v-card-text>
         </v-card>
       </v-stepper-content>
       <v-stepper-step step="4" editable>Choose Your Alignement</v-stepper-step>
@@ -51,6 +52,7 @@
       <v-stepper-content step="3">
         <v-card>
           <v-card-title>Choose Your Background</v-card-title>
+          <v-card-text>Work In Progress...</v-card-text>
         </v-card>
       </v-stepper-content>
       <v-stepper-content step="4">
