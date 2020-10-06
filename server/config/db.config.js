@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "test") {
 module.exports = {
   HOST: HOST,
   USER: USER,
-  PASSWORD: "!Book!17",
+  PASSWORD: "Anubis210",
   DB: "characterbook",
   dialect: "mysql",
   port: 3306,
