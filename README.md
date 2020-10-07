@@ -2,12 +2,17 @@
 
 ## Project setup
 ```
-npm install
+npm ci
 ```
 
 ### Compiles and hot-reloads for development
 ```
 npm run serve
+```
+
+### Start local server on local DB
+```
+npm start
 ```
 
 ### Compiles and minifies for production
