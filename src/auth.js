@@ -35,18 +35,18 @@ export default {
   onChange() {},
 };
 
-function pretendRequest(email, pass, cb) {
-  //TODO: authenticate from DB
-  setTimeout(() => {
-    if (email === "joe@example.com" && pass === "password1") {
-      cb({
-        authenticated: true,
-        token: Math.random()
-          .toString(36)
-          .substring(7),
-      });
-    } else {
-      cb({ authenticated: false });
-    }
-  }, 500);
+import UserServices from "./services/UserServices";
+
+function pretendRequest(username, password, cb) {
+  UserServices.authenticate(username, password).then((response) => {
+    console.log(response.data);
+    response.data
+      ? cb({
+          authenticated: true,
+          token: Math.random()
+            .toString(36)
+            .substring(7),
+        })
+      : cb({ authenticated: false });
+  });
 }
