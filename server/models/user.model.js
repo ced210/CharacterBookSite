@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
     email: {
       type: Sequelize.STRING,
     },
+    password: {
+      type: Sequelize.STRING,
+    },
     create_time: {
       type: Sequelize.DATE,
     },

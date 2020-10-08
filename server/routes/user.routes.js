@@ -6,5 +6,8 @@ module.exports = (app) => {
   // Retrieve a single Race with id
   router.get("/:username/:password", users.authenticate);
 
+  // Create a new Race
+  router.post("/", users.create);
+
   app.use("/api/users", router);
 };
