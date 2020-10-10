@@ -6,7 +6,7 @@ export default {
       this.onChange(true);
       return;
     }
-    pretendRequest(email, pass, (res) => {
+    pretendRequest(email, pass, res => {
       if (res.authenticated) {
         localStorage.token = res.token;
         if (cb) cb(true);
@@ -32,20 +32,20 @@ export default {
     return !!localStorage.token;
   },
 
-  onChange() {},
+  onChange() {}
 };
 
 import UserServices from "./services/UserServices";
 
 function pretendRequest(username, password, cb) {
-  UserServices.authenticate(username, password).then((response) => {
+  UserServices.authenticate(username, password).then(response => {
     console.log(response.data);
     response.data
       ? cb({
           authenticated: true,
           token: Math.random()
             .toString(36)
-            .substring(7),
+            .substring(7)
         })
       : cb({ authenticated: false });
   });

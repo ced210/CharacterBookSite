@@ -11,11 +11,15 @@
           <h1
             class="text-h2 mb-4 secondary--text font-weight-black text-decoration-underline"
             style="text-shadow: 2px 3px 4px #000;"
-          >Character Book</h1>
+          >
+            Character Book
+          </h1>
           <h4
             class="text-h5 secondary--text font-weight-black"
             style="text-shadow: 2px 3px 4px #000;"
-          >Keep and Manage Your 5e DnD Characters Here!</h4>
+          >
+            Keep and Manage Your 5e DnD Characters Here!
+          </h4>
         </v-col>
       </v-row>
     </v-parallax>

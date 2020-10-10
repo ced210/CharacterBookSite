@@ -1,8 +1,15 @@
 <template>
-  <choose-form-template :back-action="controller.onBack" :continue-action="controller.onSave">
+  <choose-form-template
+    :back-action="controller.onBack"
+    :continue-action="controller.onSave"
+  >
     <v-item-group v-model="controller.selectedAlignement" mandatory>
       <v-row dense>
-        <v-col v-for="(alignement, index) in controller.alignements" :key="index" cols="4">
+        <v-col
+          v-for="(alignement, index) in controller.alignements"
+          :key="index"
+          cols="4"
+        >
           <v-hover v-slot:default="{ hover }">
             <v-item v-slot:default="{ active, toggle }">
               <v-card
@@ -15,7 +22,10 @@
                 @click="toggle"
               >
                 <v-scroll-y-transition>
-                  <div class="subheading flex-grow-1 text-center" v-text="alignement.name" />
+                  <div
+                    class="subheading flex-grow-1 text-center"
+                    v-text="alignement.name"
+                  />
                 </v-scroll-y-transition>
               </v-card>
             </v-item>

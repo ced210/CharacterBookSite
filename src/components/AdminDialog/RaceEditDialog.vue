@@ -4,10 +4,22 @@
     <v-card-text>
       <v-text-field v-model="controller.race.Name" label="Name" />
       <v-textarea v-model="controller.race.Description" label="Description" />
-      <v-text-field v-model="controller.race.SpeedDescription" label="SpeedDescription" />
-      <v-text-field v-model="controller.race.SizeDescription" label="SizeDescription" />
-      <v-text-field v-model="controller.race.AgeDescription" label="AgeDescription" />
-      <v-text-field v-model="controller.race.LanguageDescription" label="LanguageDescription" />
+      <v-text-field
+        v-model="controller.race.SpeedDescription"
+        label="SpeedDescription"
+      />
+      <v-text-field
+        v-model="controller.race.SizeDescription"
+        label="SizeDescription"
+      />
+      <v-text-field
+        v-model="controller.race.AgeDescription"
+        label="AgeDescription"
+      />
+      <v-text-field
+        v-model="controller.race.LanguageDescription"
+        label="LanguageDescription"
+      />
     </v-card-text>
     <v-card-actions>
       <v-btn @click="controller.onSave" text>Save</v-btn>

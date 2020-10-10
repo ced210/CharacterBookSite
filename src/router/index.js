@@ -13,7 +13,7 @@ function requireAuth(to, from, next) {
   if (!auth.loggedIn()) {
     next({
       path: "/login",
-      query: { redirect: to.fullPath },
+      query: { redirect: to.fullPath }
     });
   } else next();
 }
@@ -23,13 +23,13 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
-    beforeEnter: requireAuth,
+    beforeEnter: requireAuth
   },
   {
     path: "/character-creation",
     name: "Caracter Creation",
     component: CharacterCreation,
-    beforeEnter: requireAuth,
+    beforeEnter: requireAuth
   },
   {
     path: "/about",
@@ -39,26 +39,26 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-    beforeEnter: requireAuth,
+    beforeEnter: requireAuth
   },
   { path: "/login", component: Login },
   {
     path: "/admin",
     name: "Admin",
     component: Admin,
-    beforeEnter: requireAuth,
+    beforeEnter: requireAuth
   },
   {
     path: "/logout",
     beforeEnter(to, from, next) {
       auth.logout();
       next("/login");
-    },
-  },
+    }
+  }
 ];
 
 const router = new VueRouter({
-  routes,
+  routes
 });
 
 export default router;

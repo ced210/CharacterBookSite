@@ -14,14 +14,14 @@ export default new Vuetify({
         secondary: colors.grey.darken2,
         accent: colors.shades.black,
         error: colors.red.accent3,
-        succes: colors.green,
+        succes: colors.green
       },
       dark: {
-        primary: colors.blue.lighten3,
-      },
-    },
+        primary: colors.blue.lighten3
+      }
+    }
   },
   icons: {
-    iconfont: "md",
-  },
+    iconfont: "md"
+  }
 });
