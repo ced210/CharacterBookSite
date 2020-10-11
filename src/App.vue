@@ -9,7 +9,7 @@
         collapse-on-scroll
         scroll-target="#scrolling-techniques-1"
       >
-        <v-app-bar-nav-icon @click="drawer = true" />
+        <v-app-bar-nav-icon v-if="loggedIn" @click="drawer = true" />
         <v-toolbar-title v-text="'Character Book'" />
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" temporary app>

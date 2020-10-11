@@ -14,9 +14,7 @@ new Vue({
     window.addEventListener("beforeunload", this.handler);
   },
   methods: {
-    handler: event => {
-      console.log("beforePageDestroyed");
-      console.log(event);
+    handler: () => {
       router.push("/logout");
     }
   }
