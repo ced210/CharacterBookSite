@@ -8,18 +8,16 @@ exports.create = (req, res) => {
   const user = {
     username: req.body.username,
     email: req.body.email,
-    password: req.body.password,
+    password: req.body.password
   };
 
   // Save User in the database
   // Users.create(user);
   Users.create(req.body)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
+    .then(data => res.send(data))
+    .catch(err => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the User.",
+        message: err.message || "Some error occurred while creating the User."
       });
     });
 };
@@ -33,12 +31,13 @@ exports.authenticate = (req, res) => {
   // search for attributes
   console.log(Users);
   Users.findOne({
-    where: { username, password },
+    where: { username, password }
   })
-    .then((data) => res.send(!!data))
-    .catch((err) =>
+    .then(data => res.send(!!data))
+    // eslint-disable-next-line handle-callback-err
+    .catch(err =>
       res.status(500).send({
-        message: `Error retrieving User with username=${username} and password=${password}`,
+        message: `Error retrieving User with username=${username} and password=${password}`
       })
     );
 };

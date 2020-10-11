@@ -1,3 +1,4 @@
+/* eslint-disable handle-callback-err */
 const db = require("../models");
 const Races = db.race;
 const Op = db.Sequelize.Op;
@@ -15,18 +16,16 @@ exports.create = (req, res) => {
   // Create a Race
   const race = {
     Name: req.body.Name,
-    Description: req.body.Description,
+    Description: req.body.Description
   };
 
   // Save Race in the database
   // Races.create(race);
   Races.create(req.body)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
+    .then(data => res.send(data))
+    .catch(err => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Race.",
+        message: err.message || "Some error occurred while creating the Race."
       });
     });
 };
@@ -40,12 +39,10 @@ exports.findAll = (req, res) => {
   console.log(condition);
 
   Races.findAll({ where: condition })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
+    .then(data => res.send(data))
+    .catch(err => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving race.",
+        message: err.message || "Some error occurred while retrieving race."
       });
     });
 };
@@ -55,14 +52,13 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Races.findByPk(id)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
+    .then(data => res.send(data))
+    // eslint-disable-next-line handle-callback-err
+    .catch(err =>
       res.status(500).send({
-        message: "Error retrieving Race with id=" + id,
-      });
-    });
+        message: "Error retrieving Race with id=" + id
+      })
+    );
 };
 
 // Update a Race by the id in the request
@@ -70,24 +66,23 @@ exports.update = (req, res) => {
   const id = req.params.id;
 
   Races.update(req.body, {
-    where: { id: id },
+    where: { id: id }
   })
-    .then((num) => {
-      if (num == 1) {
-        res.send({
-          message: "Race was updated successfully.",
+    .then(num => {
+      if (num === 1) {
+        return res.send({
+          message: "Race was updated successfully."
         });
       } else {
-        res.send({
-          message: `Cannot update Race with id=${id}`,
+        return res.send({
+          message: `Cannot update Race with id=${id}`
         });
       }
     })
-    .catch((err) => {
+    .catch(err =>
       res.status(500).send({
-        message: "Error updating Race with id=" + id,
-      });
-    });
+        message: "Error updating Race with id=" + id
+      }));
 };
 
 // Delete a Race with the specified id in the request
@@ -95,22 +90,22 @@ exports.delete = (req, res) => {
   const id = req.params.id;
 
   Races.destroy({
-    where: { id: id },
+    where: { id: id }
   })
-    .then((num) => {
-      if (num == 1) {
-        res.send({
-          message: "Race was deleted successfully!",
+    .then(num => {
+      if (num === 1) {
+        return res.send({
+          message: "Race was deleted successfully!"
         });
       } else {
-        res.send({
-          message: `Cannot delete Race with id=${id}.`,
+        return res.send({
+          message: `Cannot delete Race with id=${id}.`
         });
       }
     })
-    .catch((err) => {
+    // eslint-disable-next-line handle-callback-err
+    .catch(err =>
       res.status(500).send({
-        message: "Could not delete Race with id=" + id,
-      });
-    });
+        message: "Could not delete Race with id=" + id
+      }));
 };
