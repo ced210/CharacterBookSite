@@ -39,7 +39,7 @@
             <v-row dense>
               <v-col lg="6">
                 <h3 class="text-decoration-underline">Name</h3>
-                <p v-text="controller.hoverClass.Name"></p>
+                <p v-text="controller.hoverClass.Name" />
               </v-col>
             </v-row>
           </v-col>
