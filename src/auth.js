@@ -9,6 +9,7 @@ export default {
     pretendRequest(email, pass, res => {
       if (res.authenticated) {
         localStorage.token = res.token;
+        localStorage.username = res.username;
         if (cb) cb(true);
         this.onChange(true);
       } else {
@@ -16,6 +17,10 @@ export default {
         this.onChange(false);
       }
     });
+  },
+
+  getUser() {
+    return { username: localStorage.username };
   },
 
   getToken() {
@@ -42,6 +47,7 @@ function pretendRequest(username, password, cb) {
     console.log(response.data);
     response.data
       ? cb({
+          username: username,
           authenticated: true,
           token: Math.random()
             .toString(36)

@@ -1,16 +1,13 @@
 <template>
   <v-container>
     <v-row align-content="center" justify="center">
-      <v-card width="50%">
+      <v-card width="50%" :loading="isLoading">
         <v-card-title>
           <h2>Login</h2>
           <v-spacer />
           <v-btn color="primary" v-text="'Sign In'" @click="onSignIn" />
         </v-card-title>
         <v-card-text>
-          <p v-if="$route.query.redirect">
-            You need to login first.
-          </p>
           <v-container>
             <v-form>
               <v-text-field
@@ -26,10 +23,10 @@
               />
             </v-form>
             <v-alert
-              v-if="error"
-              type="error"
+              v-if="getAlertInfo"
+              :type="getAlertInfo.type"
               text
-              v-text="'Bad login information'"
+              v-text="getAlertInfo.text"
             />
           </v-container>
         </v-card-text>
@@ -55,7 +52,6 @@
     </v-dialog>
   </v-container>
 </template>
-
 <script>
 import auth from "../auth";
 import SignIn from "./SignIn.vue";
@@ -69,8 +65,32 @@ export default {
       username: null,
       password: null,
       error: false,
-      isSignInVisible: false
+      success: false,
+      isSignInVisible: false,
+      isLoading: false,
+      alertInfo: {}
     };
+  },
+  computed: {
+    getAlertInfo() {
+      if (this.error) {
+        return {
+          type: "error",
+          text: "Bad login information"
+        };
+      } else if (this.success) {
+        return {
+          type: "success",
+          text: "Welcome!"
+        };
+      } else if (this.$route.query.redirect) {
+        return {
+          type: "info",
+          text: "You need to login first."
+        };
+      }
+      return null;
+    }
   },
   methods: {
     onSignIn() {
@@ -80,9 +100,14 @@ export default {
       this.isSignInVisible = false;
     },
     login() {
+      this.isLoading = true;
       auth.login(this.username, this.password, loggedIn => {
         if (!loggedIn) this.error = true;
-        else this.$router.replace(this.$route.query.redirect || "/");
+        else {
+          this.success = true;
+          this.$router.replace(this.$route.query.redirect || "/");
+        }
+        this.isLoading = false;
       });
     }
   }
