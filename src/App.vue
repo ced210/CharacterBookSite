@@ -9,10 +9,18 @@
         collapse-on-scroll
         scroll-target="#scrolling-techniques-1"
       >
-        <v-app-bar-nav-icon @click="drawer = true" />
+        <v-app-bar-nav-icon v-if="loggedIn" @click="drawer = true" />
         <v-toolbar-title v-text="'Character Book'" />
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" temporary app>
+        <v-list-item>
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              {{ "Hi " + user.username }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider />
         <v-list nav dense>
           <v-list-item-group
             v-model="group"
@@ -45,6 +53,7 @@
           </v-list-item-group>
         </v-list>
         <template v-slot:append>
+        <v-divider />
           <v-list-item to="/logout">
             <v-list-item-icon>
               <v-icon>logout</v-icon>
@@ -93,7 +102,8 @@ export default {
     return {
       drawer: false,
       group: false,
-      loggedIn: auth.loggedIn()
+      loggedIn: auth.loggedIn(),
+      user: auth.getUser()
     };
   },
   created() {
