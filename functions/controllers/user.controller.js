@@ -1,3 +1,4 @@
+/* eslint-disable handle-callback-err */
 const db = require("../models");
 const Users = db.user;
 const Op = db.Sequelize.Op;
@@ -14,9 +15,7 @@ exports.create = (req, res) => {
   // Save User in the database
   // Users.create(user);
   Users.create(req.body)
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) => res.send(data))
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Some error occurred while creating the User.",

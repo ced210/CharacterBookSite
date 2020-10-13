@@ -1,3 +1,4 @@
+/* eslint-disable handle-callback-err */
 const db = require("../models");
 const Races = db.race;
 const Op = db.Sequelize.Op;
@@ -21,9 +22,7 @@ exports.create = (req, res) => {
   // Save Race in the database
   // Races.create(race);
   Races.create(req.body)
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) => res.send(data))
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Some error occurred while creating the Race.",
@@ -40,9 +39,7 @@ exports.findAll = (req, res) => {
   console.log(condition);
 
   Races.findAll({ where: condition })
-    .then((data) => {
-      res.send(data);
-    })
+    .then((data) => res.send(data))
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving race.",
@@ -55,14 +52,12 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Races.findByPk(id)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
+    .then((data) => res.send(data))
+    .catch((err) =>
       res.status(500).send({
         message: "Error retrieving Race with id=" + id,
-      });
-    });
+      })
+    );
 };
 
 // Update a Race by the id in the request
@@ -73,12 +68,12 @@ exports.update = (req, res) => {
     where: { id: id },
   })
     .then((num) => {
-      if (num == 1) {
-        res.send({
+      if (num === 1) {
+        return res.send({
           message: "Race was updated successfully.",
         });
       } else {
-        res.send({
+        return res.send({
           message: `Cannot update Race with id=${id}`,
         });
       }
@@ -98,12 +93,12 @@ exports.delete = (req, res) => {
     where: { id: id },
   })
     .then((num) => {
-      if (num == 1) {
-        res.send({
+      if (num === 1) {
+        return res.send({
           message: "Race was deleted successfully!",
         });
       } else {
-        res.send({
+        return res.send({
           message: `Cannot delete Race with id=${id}.`,
         });
       }
