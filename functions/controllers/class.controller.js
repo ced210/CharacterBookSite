@@ -16,18 +16,16 @@ exports.create = (req, res) => {
   // Create a Class
   const classe = {
     Name: req.body.Name,
-    Description: req.body.Description
+    Description: req.body.Description,
   };
 
   // Save Class in the database
   // Classe.create(class);
   Classe.create(req.body)
-    .then(data => {
-      return res.send(data);
-    })
-    .catch(err => {
+    .then((data) => res.send(data))
+    .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while creating the Class."
+        message: err.message || "Some error occurred while creating the Class.",
       });
     });
 };
@@ -37,12 +35,10 @@ exports.findAll = (req, res) => {
   const title = req.query.title;
   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
   Classe.findAll({ where: condition })
-    .then(data => {
-      return res.send(data);
-    })
-    .catch(err => {
+    .then((data) => res.send(data))
+    .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving class."
+        message: err.message || "Some error occurred while retrieving class.",
       });
     });
 };
@@ -52,13 +48,10 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Classe.findByPk(id)
-    .then(data => {
-      return res.send(data);
-    })
-    // eslint-disable-next-line handle-callback-err
-    .catch(err =>
+    .then((data) => res.send(data))
+    .catch((err) =>
       res.status(500).send({
-        message: "Error retrieving Class with id=" + id
+        message: "Error retrieving Class with id=" + id,
       })
     );
 };
@@ -68,22 +61,22 @@ exports.update = (req, res) => {
   const id = req.params.id;
 
   Classe.update(req.body, {
-    where: { id: id }
+    where: { id: id },
   })
-    .then(num => {
+    .then((num) => {
       if (num === 1) {
         return res.send({
-          message: "Class was updated successfully."
+          message: "Class was updated successfully.",
         });
       } else {
         return res.send({
-          message: `Cannot update Class with id=${id}`
+          message: `Cannot update Class with id=${id}`,
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Error updating Class with id=" + id
+        message: "Error updating Class with id=" + id,
       });
     });
 };
@@ -93,22 +86,22 @@ exports.delete = (req, res) => {
   const id = req.params.id;
 
   Classe.destroy({
-    where: { id: id }
+    where: { id: id },
   })
-    .then(num => {
+    .then((num) => {
       if (num === 1) {
         return res.send({
-          message: "Class was deleted successfully!"
+          message: "Class was deleted successfully!",
         });
       } else {
         return res.send({
-          message: `Cannot delete Class with id=${id}.`
+          message: `Cannot delete Class with id=${id}.`,
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Class with id=" + id
+        message: "Could not delete Class with id=" + id,
       });
     });
 };
