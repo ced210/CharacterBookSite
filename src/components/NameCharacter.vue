@@ -7,7 +7,7 @@
     <v-row align="center" justify="center">
       <v-col lg="8">
         <v-text-field
-          v-model="value"
+          v-model="name"
           solo
           shaped
           prepend-inner-icon="edit"
@@ -22,19 +22,21 @@ export default {
   props: {
     value: {
       type: String,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data() {
-    return { };
+    return {
+      name: this.value,
+    };
   },
   methods: {
     onBack() {
       return;
     },
     onSave() {
-      this.$emit("input", this.value);
-    }
-  }
+      this.$emit("input", this.name);
+    },
+  },
 };
 </script>

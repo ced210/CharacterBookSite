@@ -8,6 +8,6 @@ export default axios.create({
 
   headers: {
     "Content-type": "application/json",
-    Accept: "text/html",
-  },
+    Accept: "text/html"
+  }
 });
