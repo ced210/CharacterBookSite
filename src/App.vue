@@ -53,7 +53,7 @@
           </v-list-item-group>
         </v-list>
         <template v-slot:append>
-        <v-divider />
+          <v-divider />
           <v-list-item to="/logout">
             <v-list-item-icon>
               <v-icon>logout</v-icon>
