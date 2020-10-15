@@ -48,7 +48,7 @@
       persistent
       max-width="50vw"
     >
-      <sign-in @close="onCloseSignIn" />
+      <sign-in @save="onSaveSignIn" @close="onCloseSignIn" />
     </v-dialog>
   </v-container>
 </template>
@@ -98,6 +98,9 @@ export default {
     },
     onCloseSignIn() {
       this.isSignInVisible = false;
+    },
+    onSaveSignIn() {
+      this.onCloseSignIn();
     },
     login() {
       this.isLoading = true;

@@ -91,11 +91,14 @@ export default {
   },
   methods: {
     createUser() {
-      UserServices.create({
+      this.isLoading = true;
+      return UserServices.create({
         username: this.username,
         password: this.password,
         email: this.email
-      }).then(() => this.close());
+      })
+        .then(() => this.close())
+        .finally(() => (this.isLoading = false));
     },
     close() {
       this.$emit("close");
