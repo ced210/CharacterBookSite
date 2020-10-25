@@ -32,6 +32,12 @@
               </v-list-item-icon>
               <v-list-item-title>Home</v-list-item-title>
             </v-list-item>
+            <v-list-item to="/characters">
+              <v-list-item-icon>
+                <v-icon>groups</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>My Characters</v-list-item-title>
+            </v-list-item>
             <v-list-item to="/character-creation">
               <v-list-item-icon>
                 <v-icon>face</v-icon>

@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Characters from "../views/Characters.vue";
 import CharacterCreation from "../views/CharacterCreation.vue";
 import Admin from "../views/Admin.vue";
 import Login from "../components/Login.vue";
@@ -23,6 +24,12 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    beforeEnter: requireAuth
+  },
+  {
+    path: "/characters",
+    name: "My Caracters",
+    component: Characters,
     beforeEnter: requireAuth
   },
   {
