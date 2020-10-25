@@ -58,7 +58,7 @@
         <choose-alignement-form v-model="alignementId" />
       </v-stepper-content>
       <v-stepper-content step="5">
-        <name-character v-model="name" @create="onCreateCharacter"/>
+        <name-character v-model="name" @create="onCreateCharacter" />
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -68,6 +68,7 @@ import ChooseRaceForm from "../components/ChooseRaceForm.vue";
 import ChooseClassForm from "../components/ChooseClassForm.vue";
 import ChooseAlignementForm from "../components/ChooseAlignementForm.vue";
 import NameCharacter from "../components/NameCharacter.vue";
+import CharacterServices from "../services/CharacterServices";
 
 export default {
   components: {
@@ -97,7 +98,14 @@ export default {
       alert("oh hi mark: " + classId);
     },
     onCreateCharacter() {
-      
+      CharacterServices.create({
+        name: this.name,
+        raceId: this.raceId,
+        classId: this.classId,
+        alignementId: this.alignementId
+      })
+        .then(() => this.$router.push("/"))
+        .catch(error => console.error(error));
     }
   }
 };

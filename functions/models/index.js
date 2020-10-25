@@ -23,6 +23,7 @@ db.sequelize = sequelize;
 
 db.race = require("./race.model.js")(sequelize, Sequelize);
 db.class = require("./classe.model.js")(sequelize, Sequelize);
+db.character = require("./character.model.js")(sequelize, Sequelize);
 db.user = require("./user.model.js")(sequelize, Sequelize);
 
 module.exports = db;

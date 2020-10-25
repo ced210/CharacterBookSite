@@ -23,6 +23,7 @@ db.sequelize.sync();
 
 require("./routes/race.routes")(app);
 require("./routes/class.routes")(app);
+require("./routes/character.routes")(app);
 require("./routes/user.routes")(app);
 const fn = async () => {
   try {

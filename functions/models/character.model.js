@@ -1,26 +1,20 @@
 module.exports = (sequelize, Sequelize) => {
-  const Race = sequelize.define("race", {
+  const character = sequelize.define("character", {
     // Id: {
     //   type: Sequelize.BIGINT,
     // },
-    Name: {
+    name: {
       type: Sequelize.STRING,
     },
-    Description: {
-      type: Sequelize.STRING,
+    raceId: {
+      type: Sequelize.BIGINT,
     },
-    SizeDescription: {
-      type: Sequelize.STRING,
+    classId: {
+      type: Sequelize.BIGINT,
     },
-    AgeDescription: {
-      type: Sequelize.STRING,
-    },
-    SpeedDescription: {
-      type: Sequelize.STRING,
-    },
-    LanguageDescription: {
-      type: Sequelize.STRING,
-    },
+    alignementId: {
+      type: Sequelize.BIGINT,
+    }
   });
-  return Race;
+  return character;
 };

@@ -3,11 +3,12 @@
     <v-row align="center" justify="center">
       <v-col cols="8">
         <v-text-field
-          v-model="value"
+          v-model="name"
           solo
           shaped
           prepend-inner-icon="edit"
           placeholder="type the name..."
+          @input="onSave"
         />
       </v-col>
       <v-col cols="12">
