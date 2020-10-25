@@ -25,7 +25,7 @@
         <v-row v-if="controller.hoverRace" class="text-left">
           <v-col lg="2">
             <v-img
-              src="https://www.placecage.com/150/150"
+              src="https://www.placecage.com/300/500"
               aspect-ratio="1"
               width="150"
               height="150"
@@ -110,7 +110,7 @@ export default {
   },
   data() {
     const controller = new ChooseRaceFormController();
-    controller.onSaveEvent = raceId => this.$emit("save", raceId);
+    controller.onSaveEvent = raceId => this.$emit("input", raceId);
     return { controller };
   }
 };
