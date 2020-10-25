@@ -71,7 +71,7 @@ export class ChooseAlignementFormController {
 
   onSave = () => {
     console.log(this.alignements[this.selectedAlignement]);
-    this.onSaveEvent();
+    this.onSaveEvent(this.alignements[this.selectedAlignement].id);
     return this.alignements[this.selectedAlignement];
   };
 }
@@ -85,7 +85,7 @@ export default {
   },
   data() {
     const controller = new ChooseAlignementFormController();
-    controller.onSaveEvent = () => this.$emit("input", this.value);
+    controller.onSaveEvent = (alignementId) => this.$emit("input", alignementId);
     return { controller };
   }
 };

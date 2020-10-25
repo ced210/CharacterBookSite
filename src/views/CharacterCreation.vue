@@ -4,6 +4,7 @@
     non-linear
     :vertical="$vuetify.breakpoint.smAndDown"
   >
+  {{ 'raceId '+ raceId }}{{ 'classId '+classId }}{{ 'alignementId  '+alignementId }}
     <v-stepper-header v-if="!$vuetify.breakpoint.smAndDown">
       <v-stepper-step editable step="1">Chose Your Race</v-stepper-step>
       <v-divider />

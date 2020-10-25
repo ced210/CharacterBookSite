@@ -85,7 +85,7 @@ export class ChooseClassFormController {
 export default {
   data() {
     const controller = new ChooseClassFormController();
-    controller.onSaveEvent = classId => this.$emit("save", classId);
+    controller.onSaveEvent = classId => this.$emit("input", classId);
     return { controller };
   }
 };
