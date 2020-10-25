@@ -97,6 +97,12 @@ export class ChooseRaceFormController {
 }
 
 export default {
+  props: {
+    value: {
+      type: String,
+      default: () => ({})
+    }
+  },
   data() {
     const controller = new ChooseRaceFormController();
     controller.onSaveEvent = raceId => this.$emit("save", raceId);

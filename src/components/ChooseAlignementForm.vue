@@ -6,8 +6,8 @@
     <v-item-group v-model="controller.selectedAlignement" mandatory>
       <v-row dense>
         <v-col
-          v-for="(alignement, index) in controller.alignements"
-          :key="index"
+          v-for="alignement in controller.alignements"
+          :key="alignement.id"
           cols="4"
         >
           <v-hover v-slot:default="{ hover }">
@@ -57,14 +57,14 @@ export class ChooseAlignementFormController {
 
   alignements = [
     new Alignement(1, "Lawful Good", ""),
-    new Alignement(1, "Lawful Neutral", ""),
-    new Alignement(1, "Lawful Evil", ""),
-    new Alignement(1, "Neutral Good", ""),
-    new Alignement(1, "Neutral Neutral", ""),
-    new Alignement(1, "Neutral Evil", ""),
-    new Alignement(1, "Chaotic Good", ""),
-    new Alignement(1, "Chaotic Neutral", ""),
-    new Alignement(1, "Chaotic Evil", "")
+    new Alignement(2, "Lawful Neutral", ""),
+    new Alignement(3, "Lawful Evil", ""),
+    new Alignement(4, "Neutral Good", ""),
+    new Alignement(5, "Neutral Neutral", ""),
+    new Alignement(6, "Neutral Evil", ""),
+    new Alignement(7, "Chaotic Good", ""),
+    new Alignement(8, "Chaotic Neutral", ""),
+    new Alignement(9, "Chaotic Evil", "")
   ];
 
   selectedAlignement = null;
@@ -77,9 +77,15 @@ export class ChooseAlignementFormController {
 }
 
 export default {
+  props: {
+    value: {
+      type: Number,
+      default: () => 0
+    }
+  },
   data() {
     const controller = new ChooseAlignementFormController();
-    controller.onSaveEvent = () => this.$emit("save");
+    controller.onSaveEvent = () => this.$emit("input", this.value);
     return { controller };
   }
 };

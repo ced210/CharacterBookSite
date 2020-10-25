@@ -18,11 +18,11 @@
     <div v-else>
       <v-stepper-step editable step="1">Chose Your Race</v-stepper-step>
       <v-stepper-content step="1">
-        <choose-race-form @save="onRaceSave" />
+        <choose-race-form v-model="raceId" />
       </v-stepper-content>
       <v-stepper-step editable step="2">Choose Your Class</v-stepper-step>
       <v-stepper-content step="2">
-        <choose-class-form @save="onClassSave" />
+        <choose-class-form v-model="classId" />
       </v-stepper-content>
       <v-stepper-step editable step="3">Choose Your Background</v-stepper-step>
       <v-stepper-content step="3">
@@ -33,7 +33,7 @@
       </v-stepper-content>
       <v-stepper-step step="4" editable>Choose Your Alignement</v-stepper-step>
       <v-stepper-content step="4">
-        <choose-alignement-form @save="onAlignementSave" />
+        <choose-alignement-form v-model="alignementId" />
       </v-stepper-content>
       <v-stepper-step step="5" editable>Name Your Character</v-stepper-step>
       <v-stepper-content step="5">
@@ -42,10 +42,10 @@
     </div>
     <v-stepper-items v-if="!$vuetify.breakpoint.smAndDown">
       <v-stepper-content step="1">
-        <choose-race-form @save="onRaceSave" />
+        <choose-race-form v-model="raceId" />
       </v-stepper-content>
       <v-stepper-content step="2">
-        <choose-class-form @save="onClassSave" />
+        <choose-class-form v-model="classId" />
       </v-stepper-content>
       <v-stepper-content step="3">
         <v-card>
@@ -54,7 +54,7 @@
         </v-card>
       </v-stepper-content>
       <v-stepper-content step="4">
-        <choose-alignement-form @save="onAlignementSave" />
+        <choose-alignement-form v-model="alignementId" />
       </v-stepper-content>
       <v-stepper-content step="5">
         <name-character v-model="name" />
@@ -79,7 +79,10 @@ export default {
   data() {
     return {
       step: 1,
-      name: null
+      name: null,
+      raceId: 0,
+      classId: 0,
+      alignementId: 0
     };
   },
   methods: {
