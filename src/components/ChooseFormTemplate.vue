@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto" width="90%">
+  <v-card class="mx-auto" width="90%" :loading="isLoading">
     <v-card-title>
       {{ title }}
       <v-spacer />
@@ -17,6 +17,10 @@ export default {
     title: {
       type: String,
       default: () => null
+    },
+    isLoading: {
+      type: Boolean,
+      default: () => false
     },
     backAction: {
       type: Function,

@@ -5,7 +5,7 @@
       max-width="200px"
       max-height="200px"
     ></v-img>-->
-    <v-parallax src="../assets/HomeBackGround.jpg" height="700">
+    <v-parallax src="../assets/dicebag.jpg" height="700">
       <v-row align="center" justify="center">
         <v-col class="text-center" cols="12">
           <h1

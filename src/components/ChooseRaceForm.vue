@@ -1,8 +1,8 @@
 <template>
   <choose-form-template
     title="Choose Your Race Form"
-    :back-action="controller.onBack"
     :continue-action="controller.saveRace"
+    :is-loading="controller.isLoading"
   >
     <v-row dense>
       <v-col lg="2">
@@ -69,12 +69,15 @@ export class ChooseRaceFormController {
 
   selectedRaceIndex = 0;
 
+  isLoading = false;
+
   constructor() {
     this.getRaces().then(() => this.onHoverRace(0));
   }
 
-  getRaces = () =>
-    RaceDataService.getAll()
+  getRaces = () => {
+    this.isLoading = true;
+    return RaceDataService.getAll()
       .then(response => {
         console.log(response);
         console.log(response.data);
@@ -83,7 +86,9 @@ export class ChooseRaceFormController {
       })
       .catch(e => {
         console.log(e);
-      });
+      })
+      .finally(() => (this.isLoading = false));
+  };
 
   onHoverRace = index => {
     this.hoverRace = this.races[index];

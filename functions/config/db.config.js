@@ -4,12 +4,14 @@ let HOST = "localhost";
 let USER = "root";
 let PASSWORD = "!Book!17";
 let DB = "characterbook";
-if (process.env.NODE_ENV === "test") {
-  return;
-} else if (process.env.NODE_ENV === "production") {
-  HOST = "92.249.45.155";
-  USER = "u727565515_anubis210";
-  DB = "u727565515_characterbook";
+// if (process.env.NODE_ENV === "test") {
+//   return;
+// } else
+if (process.env.NODE_ENV === "production") {
+  HOST = "SG-characterbook-38678.servers.mongodirector.com";
+  USER = "CedPC";
+  DB = "characterbook";
+  PASSWORD = "AAnubis210!";
 } else if (process.env.NODE_ENV === "developpement") {
   HOST = "localhost";
   USER = "root";
