@@ -83,6 +83,12 @@ export class ChooseClassFormController {
 }
 
 export default {
+  props: {
+    value: {
+      type: Number,
+      default: () => ({})
+    }
+  },
   data() {
     const controller = new ChooseClassFormController();
     controller.onSaveEvent = classId => this.$emit("input", classId);

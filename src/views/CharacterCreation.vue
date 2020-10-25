@@ -58,7 +58,7 @@
         <choose-alignement-form v-model="alignementId" />
       </v-stepper-content>
       <v-stepper-content step="5">
-        <name-character v-model="name" />
+        <name-character v-model="name" @create="onCreateCharacter"/>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -95,6 +95,9 @@ export default {
     },
     onClassSave(classId) {
       alert("oh hi mark: " + classId);
+    },
+    onCreateCharacter() {
+      
     }
   }
 };

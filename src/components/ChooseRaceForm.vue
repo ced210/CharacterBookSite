@@ -104,7 +104,7 @@ export class ChooseRaceFormController {
 export default {
   props: {
     value: {
-      type: String,
+      type: Number,
       default: () => ({})
     }
   },

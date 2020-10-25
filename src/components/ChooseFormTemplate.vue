@@ -4,7 +4,12 @@
       {{ title }}
       <v-spacer />
       <v-btn @click="backAction" v-text="'back'" />
-      <v-btn color="primary" @click="continueAction" v-text="'continue'" />
+      <v-btn
+        v-if="continueAction"
+        color="primary"
+        @click="continueAction"
+        v-text="'continue'"
+      />
     </v-card-title>
     <v-card-text>
       <slot />
@@ -28,7 +33,7 @@ export default {
     },
     continueAction: {
       type: Function,
-      default: () => {}
+      default: () => null
     }
   },
   data() {
