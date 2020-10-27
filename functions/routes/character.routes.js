@@ -6,5 +6,7 @@ module.exports = (app) => {
   // Create a new Race
   router.post("/", characters.create);
 
+  router.get("/:userId", characters.fetchByUserId);
+
   app.use("/api/characters", router);
 };

@@ -98,13 +98,15 @@ export default {
       alert("oh hi mark: " + classId);
     },
     onCreateCharacter() {
+      console.log(localStorage.userId);
       CharacterServices.create({
+        userId: localStorage.userId,
         name: this.name,
         raceId: this.raceId,
         classId: this.classId,
         alignementId: this.alignementId
       })
-        .then(() => this.$router.push("/"))
+        .then(() => this.$router.push("/characters"))
         .catch(error => console.error(error));
     }
   }

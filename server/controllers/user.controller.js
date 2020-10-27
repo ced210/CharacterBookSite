@@ -28,17 +28,17 @@ exports.create = (req, res) => {
 exports.authenticate = (req, res) => {
   const username = req.params.username;
   const password = req.params.password;
-  console.log(`username=${username}`);
-  console.log(`password=${password}`);
   // search for attributes
-  console.log(Users);
   Users.findOne({
     where: { username, password },
   })
-    .then((data) => res.send(!!data))
-    .catch((err) =>
+    .then(function (data) {
+      console.warn('receive data: ',data);
+      return res.send(data);
+    })
+    .catch(err =>
       res.status(500).send({
-        message: `Error retrieving User with username=${username} and password=${password}`,
+        message: `Error retrieving User with username=${username} and password=${password}: ${err}`,
       })
     );
 };

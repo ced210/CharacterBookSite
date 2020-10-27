@@ -10,6 +10,7 @@ export default {
       if (res.authenticated) {
         localStorage.token = res.token;
         localStorage.username = res.username;
+        localStorage.userId = res.userId;
         if (cb) cb(true);
         this.onChange(true);
       } else {
@@ -43,16 +44,19 @@ export default {
 import UserServices from "./services/UserServices";
 
 function pretendRequest(username, password, cb) {
-  UserServices.authenticate(username, password).then(response => {
-    console.log(response.data);
-    response.data
-      ? cb({
-          username: username,
-          authenticated: true,
-          token: Math.random()
-            .toString(36)
-            .substring(7)
-        })
-      : cb({ authenticated: false });
-  });
+  UserServices.authenticate(username, password)
+    .then(response => {
+      console.log("userId: ", response.data);
+      response.data
+        ? cb({
+            username: username,
+            authenticated: true,
+            userId: response.data.id,
+            token: Math.random()
+              .toString(36)
+              .substring(7)
+          })
+        : cb({ authenticated: false });
+    })
+    .catch(() => cb({ authenticated: false }));
 }

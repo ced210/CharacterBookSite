@@ -27,18 +27,16 @@ exports.create = (req, res) => {
 exports.authenticate = (req, res) => {
   const username = req.params.username;
   const password = req.params.password;
-  console.log(`username=${username}`);
-  console.log(`password=${password}`);
   // search for attributes
-  console.log(Users);
   Users.findOne({
     where: { username, password },
   })
-    .then((data) => res.send(!!data))
+  //TODO: encrypt user info (return only user id if possible)
+    .then(data => res.send(data))
     // eslint-disable-next-line handle-callback-err
-    .catch((err) =>
+    .catch(err =>
       res.status(500).send({
-        message: `Error retrieving User with username=${username} and password=${password}`,
+        message: `Error retrieving User with username=${username} and password=${password} || ${err.message}`,
       })
     );
 };
