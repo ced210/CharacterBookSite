@@ -40,24 +40,38 @@ class Character {
     this.classId = classId;
   }
 
-  buildAsync = async (name, raceId, classId) => {
-    this.name = name;
-    this.raceId = raceId;
-    this.classId = classId;
-    await raceController.findOne(data.raceId).then(race => (this.race = race));
+  buildAsync = async () => {
+    await raceController
+      .findOneValue(data.raceId)
+      .then(race => (this.race = race))
+      .catch(() => {});
     return this;
   };
 }
 
 // Find a single User with an username and password
-exports.fetchByUserId = (req, res) => {
+exports.fetchByUserId = async (req, res) => {
   Characters.findAll({
     where: { userId: req.params.userId }
   })
-    .then(data => {
-      debugger
-      return Character.buildAsync(data.name, data.raceId, data.classId);
+    .then(async data => {
+      const characters = data.map(async character => {
+        // eslint-disable-next-line promise/no-nesting
+        const race = await raceController.findOneValue(character.raceId);
+        // const c = new Character(
+        //   character.name,
+        //   character.raceId,
+        //   character.classId
+        // );
+        const c = {
+          name: character.name,
+          race: race
+        };
+        return c;
+      });
+      return res.send(await Promise.all(characters));
     })
+    // .then(c => res.send('test'))
     // eslint-disable-next-line handle-callback-err
     .catch(err =>
       res.status(500).send({

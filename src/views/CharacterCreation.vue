@@ -38,7 +38,7 @@
       </v-stepper-content>
       <v-stepper-step step="5" editable>Name Your Character</v-stepper-step>
       <v-stepper-content step="5">
-        <name-character v-model="name" />
+        <name-character v-model="name" @create="onCreateCharacter" />
       </v-stepper-content>
     </div>
     <v-stepper-items v-if="!$vuetify.breakpoint.smAndDown">
@@ -98,7 +98,6 @@ export default {
       alert("oh hi mark: " + classId);
     },
     onCreateCharacter() {
-      console.log(localStorage.userId);
       CharacterServices.create({
         userId: localStorage.userId,
         name: this.name,

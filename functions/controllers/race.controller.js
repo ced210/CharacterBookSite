@@ -51,7 +51,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Races.findByPk(id)
+  findOneValue(id)
     .then(data => res.send(data))
     // eslint-disable-next-line handle-callback-err
     .catch(err =>
@@ -60,6 +60,11 @@ exports.findOne = (req, res) => {
       })
     );
 };
+
+exports.findOneValue = id =>
+  Races.findByPk(id)
+    .then(data => data)
+    .catch(err => err);
 
 // Update a Race by the id in the request
 exports.update = (req, res) => {
@@ -82,7 +87,8 @@ exports.update = (req, res) => {
     .catch(err =>
       res.status(500).send({
         message: "Error updating Race with id=" + id
-      }));
+      })
+    );
 };
 
 // Delete a Race with the specified id in the request
@@ -107,5 +113,6 @@ exports.delete = (req, res) => {
     .catch(err =>
       res.status(500).send({
         message: "Could not delete Race with id=" + id
-      }));
+      })
+    );
 };

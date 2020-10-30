@@ -1,9 +1,15 @@
 <template>
   <div>
-    <v-slide-group v-model="model" class="pa-4" show-arrows>
+    <v-btn @click="getCharacters" v-text="'dothething'" />
+    <v-slide-group
+      v-if="controller.characters"
+      v-model="model"
+      class="pa-4"
+      show-arrows
+    >
       <v-slide-item
-        v-for="character in characters"
-        :key="character"
+        v-for="(character, index) in controller.characters"
+        :key="index"
         v-slot="{ active, toggle }"
       >
         <v-card
@@ -13,9 +19,9 @@
           width="30vw"
           @click="toggle"
         >
-        <v-card-title>{{ 'character.name' }}</v-card-title>
+          <v-card-title>{{ character.name }}</v-card-title>
           <v-card-text>
-            <v-row no-gutters align="" justify="">
+            <v-row no-gutters>
               <v-col cols="6">
                 <v-avatar size="100">
                   <v-img src="https://www.placecage.com/200/200" />
@@ -24,10 +30,10 @@
               <v-col cols="6">
                 <v-row no-gutters>
                   <v-col cols="12">
-                    <v-text-field v-model="character.raceName" />
+                    <v-text-field v-model="character.race.Name" readonly />
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field v-model="character.className" />
+                    <v-text-field v-model="character.className" readonly />
                   </v-col>
                 </v-row>
               </v-col>
@@ -40,13 +46,33 @@
 </template>
 
 <script>
+import CharacterServices from "../services/CharacterServices";
+
+class CharactersController {
+  characters = null;
+  constructor() {
+    this.characters = CharacterServices.findAllByUser()
+      .then(c => {
+        console.log(c);
+        return (this.characters=c.data);
+      });
+  }
+}
+
 export default {
   name: "Characters",
   data() {
+    const controller = new CharactersController();
     return {
-      characters: [1, 2, 3],
+      controller,
       model: null
     };
+  },
+  methods: {
+    async getCharacters() {
+      const x = await CharacterServices.findAllByUser();
+      console.log(x.data);
+    }
   }
 };
 </script>
