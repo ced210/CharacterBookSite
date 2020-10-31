@@ -3,10 +3,11 @@
     <v-card-title>
       {{ title }}
       <v-spacer />
-      <v-btn @click="backAction" v-text="'back'" />
+      <v-btn v-if="backAction" text @click="backAction" v-text="'back'" />
       <v-btn
         v-if="continueAction"
         color="primary"
+        text
         @click="continueAction"
         v-text="'continue'"
       />
@@ -29,11 +30,11 @@ export default {
     },
     backAction: {
       type: Function,
-      default: () => {}
+      default: null
     },
     continueAction: {
       type: Function,
-      default: () => null
+      default: null
     }
   },
   data() {

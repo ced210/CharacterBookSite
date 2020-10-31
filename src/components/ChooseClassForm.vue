@@ -1,7 +1,7 @@
 <template>
   <choose-form-template
     title="Choose Your Class Form"
-    :back-action="controller.onBack"
+    :back-action="controller.onBackEvent"
     :continue-action="controller.saveClass"
   >
     <v-row dense>
@@ -76,10 +76,6 @@ export class ChooseClassFormController {
     console.log(this.classes[this.selectedClassIndex]);
     this.onSaveEvent(this.classes[this.selectedClassIndex].id);
   };
-
-  onBack = () => {
-    alert("not implemented");
-  };
 }
 
 export default {
@@ -91,7 +87,11 @@ export default {
   },
   data() {
     const controller = new ChooseClassFormController();
-    controller.onSaveEvent = classId => this.$emit("input", classId);
+    controller.onSaveEvent = classId => {
+      this.$emit("input", classId);
+      this.$emit("next");
+    };
+    controller.onBackEvent = () => this.$emit("back");
     return { controller };
   }
 };
