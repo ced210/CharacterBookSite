@@ -20,6 +20,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     isGenderMale: {
       type: Sequelize.BOOLEAN
+    },
+    age: {
+      type: Sequelize.INTEGER
     }
   });
   return character;

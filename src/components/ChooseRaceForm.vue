@@ -57,13 +57,22 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-spacer />
-            <v-col cols="10">
-              <p>Gender</p>
+            <v-col cols="4">
               <v-btn-toggle v-model="controller.isGenderMale">
                 <v-btn :value="true" v-text="'Male'" />
                 <v-btn :value="false" v-text="'Female'" />
               </v-btn-toggle>
+            </v-col>
+            <v-col cols="8">
+              <v-slider
+                v-model="controller.age"
+                label="Age"
+                class="align-center"
+                :max="controller.hoverRace.maxAge"
+                :min="controller.hoverRace.minAge"
+                hide-details
+                thumb-label="always"
+              />
             </v-col>
           </v-row>
         </v-container>
@@ -82,6 +91,8 @@ export class ChooseRaceFormController {
   isLoading = false;
 
   isGenderMale = true;
+
+  age = 0;
 
   constructor() {
     this.getRaces().then(() => this.onHoverRace(0));
@@ -123,6 +134,7 @@ export default {
     controller.onSaveEvent = raceId => {
       this.$emit("input", raceId);
       this.$emit("changeGender", this.controller.isGenderMale);
+      this.$emit("changeAge", this.controller.age);
       this.$emit("next");
     };
     return { controller };

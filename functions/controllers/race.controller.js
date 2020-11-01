@@ -32,13 +32,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Races from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-  console.log(title);
-  console.log(Races);
-  console.log(condition);
-
-  Races.findAll({ where: condition })
+  Races.findAll()
     .then(data => res.send(data))
     .catch(err => {
       res.status(500).send({
