@@ -32,8 +32,8 @@
       <v-stepper-content step="1">
         <choose-race-form
           v-model="raceId"
-          @changeGender="onChangeGender"
-          @changeAge="onChangeAge"
+          @change-gender="onChangeGender"
+          @change-age="onChangeAge"
           @next="onNextStep"
           @back="onBackStep"
         />
@@ -75,8 +75,8 @@
       <v-stepper-content step="1">
         <choose-race-form
           v-model="raceId"
-          @changeGender="onChangeGender"
-          @changeAge="onChangeAge"
+          @change-gender="onChangeGender"
+          @change-age="onChangeAge"
           @next="onNextStep"
           @back="onBackStep"
         />

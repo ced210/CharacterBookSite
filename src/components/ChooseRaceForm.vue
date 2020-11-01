@@ -133,8 +133,8 @@ export default {
     const controller = new ChooseRaceFormController();
     controller.onSaveEvent = raceId => {
       this.$emit("input", raceId);
-      this.$emit("changeGender", this.controller.isGenderMale);
-      this.$emit("changeAge", this.controller.age);
+      this.$emit("change-gender", this.controller.isGenderMale);
+      this.$emit("change-age", this.controller.age);
       this.$emit("next");
     };
     return { controller };
