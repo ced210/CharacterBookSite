@@ -1,11 +1,11 @@
 <template>
-  <v-container>
+  <v-container @keyup.enter="login">
     <v-row align-content="center" justify="center">
       <v-card width="50%" :loading="isLoading">
         <v-card-title>
           <h2>Login tt</h2>
           <v-spacer />
-          <v-btn color="primary" v-text="'Sign In'" @click="onSignIn" />
+          <v-btn color="primary" v-text="'Sign Up'" @click="onSignIn" />
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -38,7 +38,6 @@
             v-text="'login'"
             :disabled="!this.username || !this.password"
             @click="login"
-            @keydown.enter="login"
           />
         </v-card-actions>
       </v-card>
@@ -104,6 +103,7 @@ export default {
       this.onCloseSignIn();
     },
     login() {
+      if (!this.username || !this.password) return;
       this.isLoading = true;
       auth.login(this.username, this.password, loggedIn => {
         if (!loggedIn) this.error = true;
