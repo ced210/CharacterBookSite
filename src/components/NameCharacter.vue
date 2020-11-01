@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     onBack() {
-      return;
+      this.$emit("back");
     },
     onSave() {
       this.$emit("input", this.name);

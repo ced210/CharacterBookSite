@@ -5,7 +5,7 @@
     :is-loading="controller.isLoading"
   >
     <v-row dense>
-      <v-col lg="2">
+      <v-col cols="4" md="2">
         <v-list shaped>
           <v-list-item-group v-model="controller.selectedRaceIndex" mandatory>
             <v-list-item
@@ -21,9 +21,9 @@
           </v-list-item-group>
         </v-list>
       </v-col>
-      <v-col lg="10" class="elevation-2">
+      <v-col cols="8" md="10" class="elevation-2">
         <v-row v-if="controller.hoverRace" class="text-left">
-          <v-col lg="2">
+          <v-col cols="2">
             <v-img
               src="https://www.placecage.com/300/500"
               aspect-ratio="1"
@@ -32,25 +32,25 @@
               contain
             />
           </v-col>
-          <v-col lg="10">
+          <v-col cols="10">
             <v-row dense>
-              <v-col lg="6">
+              <v-col cols="6">
                 <h3 class="text-decoration-underline">Description</h3>
                 <p v-text="controller.hoverRace.Description" />
               </v-col>
-              <v-col lg="6">
+              <v-col cols="6">
                 <h3 class="text-decoration-underline">Size</h3>
                 <p v-text="controller.hoverRace.SizeDescription" />
               </v-col>
-              <v-col lg="6">
+              <v-col cols="6">
                 <h3 class="text-decoration-underline">Age</h3>
                 <p v-text="controller.hoverRace.AgeDescription" />
               </v-col>
-              <v-col lg="6">
+              <v-col cols="6">
                 <h3 class="text-decoration-underline">Speed</h3>
                 <p v-text="controller.hoverRace.SpeedDescription" />
               </v-col>
-              <v-col lg="6">
+              <v-col cols="6">
                 <h3 class="text-decoration-underline">Languages</h3>
                 <p v-text="controller.hoverRace.LanguageDescription" />
               </v-col>
@@ -110,7 +110,10 @@ export default {
   },
   data() {
     const controller = new ChooseRaceFormController();
-    controller.onSaveEvent = raceId => this.$emit("input", raceId);
+    controller.onSaveEvent = raceId => {
+      this.$emit("input", raceId);
+      this.$emit("next");
+    }
     return { controller };
   }
 };

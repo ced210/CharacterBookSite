@@ -4,17 +4,17 @@ module.exports = (sequelize, Sequelize) => {
     //   type: Sequelize.BIGINT,
     // },
     username: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     email: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     password: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     create_time: {
-      type: Sequelize.DATE,
-    },
+      type: Sequelize.DATE
+    }
   });
   return User;
 };

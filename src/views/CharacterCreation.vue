@@ -4,61 +4,104 @@
     non-linear
     :vertical="$vuetify.breakpoint.smAndDown"
   >
-  {{ 'raceId '+ raceId + ' classId '+ classId + ' alignementId  '+ alignementId + ' name '+ name}}
+    {{
+      "raceId " +
+        raceId +
+        " classId " +
+        classId +
+        " alignementId  " +
+        alignementId +
+        " name " +
+        name
+    }}
     <v-stepper-header v-if="!$vuetify.breakpoint.smAndDown">
       <v-stepper-step editable step="1">Chose Your Race</v-stepper-step>
       <v-divider />
       <v-stepper-step editable step="2">Choose Your Class</v-stepper-step>
       <v-divider />
-      <v-stepper-step step="3" editable>Choose Your Background</v-stepper-step>
+      <!-- <v-stepper-step step="3" editable>Choose Your Background</v-stepper-step> -->
+      <!-- <v-divider /> -->
+      <v-stepper-step step="3" editable>Choose Your Alignement</v-stepper-step>
       <v-divider />
-      <v-stepper-step step="4" editable>Choose Your Alignement</v-stepper-step>
-      <v-divider />
-      <v-stepper-step step="5" editable>Name Your Character</v-stepper-step>
+      <v-stepper-step step="4" editable>Name Your Character</v-stepper-step>
     </v-stepper-header>
     <div v-else>
       <v-stepper-step editable step="1">Chose Your Race</v-stepper-step>
       <v-stepper-content step="1">
-        <choose-race-form v-model="raceId" />
+        <choose-race-form
+          v-model="raceId"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
       <v-stepper-step editable step="2">Choose Your Class</v-stepper-step>
       <v-stepper-content step="2">
-        <choose-class-form v-model="classId" />
+        <choose-class-form
+          v-model="classId"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
-      <v-stepper-step editable step="3">Choose Your Background</v-stepper-step>
-      <v-stepper-content step="3">
+      <!-- <v-stepper-step editable step="3">Choose Your Background</v-stepper-step> -->
+      <!-- <v-stepper-content step="3">
         <v-card>
           <v-card-title>Choose Your Background</v-card-title>
           <v-text-field v-text="'Work in progress...'" />
         </v-card>
+      </v-stepper-content> -->
+      <v-stepper-step step="3" editable>Choose Your Alignement</v-stepper-step>
+      <v-stepper-content step="3">
+        <choose-alignement-form
+          v-model="alignementId"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
-      <v-stepper-step step="4" editable>Choose Your Alignement</v-stepper-step>
+      <v-stepper-step step="4" editable>Name Your Character</v-stepper-step>
       <v-stepper-content step="4">
-        <choose-alignement-form v-model="alignementId" />
-      </v-stepper-content>
-      <v-stepper-step step="5" editable>Name Your Character</v-stepper-step>
-      <v-stepper-content step="5">
-        <name-character v-model="name" @create="onCreateCharacter" />
+        <name-character
+          v-model="name"
+          @create="onCreateCharacter"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
     </div>
     <v-stepper-items v-if="!$vuetify.breakpoint.smAndDown">
       <v-stepper-content step="1">
-        <choose-race-form v-model="raceId" />
+        <choose-race-form
+          v-model="raceId"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
       <v-stepper-content step="2">
-        <choose-class-form v-model="classId" />
+        <choose-class-form
+          v-model="classId"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
-      <v-stepper-content step="3">
+      <!-- <v-stepper-content step="3">
         <v-card>
           <v-card-title>Choose Your Background</v-card-title>
           <v-text-field v-text="'Work in progress...'" />
         </v-card>
+      </v-stepper-content> -->
+      <v-stepper-content step="3">
+        <choose-alignement-form
+          v-model="alignementId"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
       <v-stepper-content step="4">
-        <choose-alignement-form v-model="alignementId" />
-      </v-stepper-content>
-      <v-stepper-content step="5">
-        <name-character v-model="name" @create="onCreateCharacter" />
+        <name-character
+          v-model="name"
+          @create="onCreateCharacter"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -88,6 +131,12 @@ export default {
     };
   },
   methods: {
+    onNextStep() {
+      ++this.step;
+    },
+    onBackStep() {
+      --this.step;
+    },
     onAlignementSave() {
       alert("oh hi mark");
     },

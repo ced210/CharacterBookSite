@@ -1,6 +1,6 @@
 <template>
   <choose-form-template
-    :back-action="controller.onBack"
+    :back-action="controller.onBackEvent"
     :continue-action="controller.onSave"
   >
     <v-item-group v-model="controller.selectedAlignement" mandatory>
@@ -85,7 +85,11 @@ export default {
   },
   data() {
     const controller = new ChooseAlignementFormController();
-    controller.onSaveEvent = (alignementId) => this.$emit("input", alignementId);
+    controller.onSaveEvent = alignementId => {
+      this.$emit("input", alignementId);
+      this.$emit("next");
+    };
+    controller.onBackEvent = () => this.$emit("back");
     return { controller };
   }
 };

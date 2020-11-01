@@ -3,7 +3,7 @@
     <v-row align-content="center" justify="center">
       <v-card width="50%" :loading="isLoading">
         <v-card-title>
-          <h2>Login</h2>
+          <h2>Login tt</h2>
           <v-spacer />
           <v-btn color="primary" v-text="'Sign In'" @click="onSignIn" />
         </v-card-title>
@@ -38,6 +38,7 @@
             v-text="'login'"
             :disabled="!this.username || !this.password"
             @click="login"
+            @keydown.enter="login"
           />
         </v-card-actions>
       </v-card>

@@ -1,19 +1,17 @@
 <template>
   <choose-form-template
     title="Choose Your Class Form"
-    :back-action="controller.onBack"
+    :back-action="controller.onBackEvent"
     :continue-action="controller.saveClass"
   >
     <v-row dense>
-      <v-col lg="2">
-        <v-list>
+      <v-col cols="4" md="2">
+        <v-list shaped>
           <v-list-item-group v-model="controller.selectedClassIndex" mandatory>
             <v-list-item
               v-for="(c, i) in controller.classes"
               :key="i"
-              :class="
-                `elevation-${controller.selectedClassIndex === i ? 10 : 0}`
-              "
+              color="primary"
               @click="controller.onClickClass(i)"
             >
               <v-list-item-content>
@@ -23,8 +21,7 @@
           </v-list-item-group>
         </v-list>
       </v-col>
-      <!-- style="background-color:#E0E0E0" -->
-      <v-col lg="10" class="elevation-10">
+      <v-col cols="8" md="10" class="elevation-2">
         <v-row v-if="controller.hoverClass" class="text-left">
           <v-col lg="2">
             <v-img
@@ -35,7 +32,7 @@
               contain
             />
           </v-col>
-          <v-col lg="10">
+          <v-col cols="10">
             <v-row dense>
               <v-col lg="6">
                 <h3 class="text-decoration-underline">Name</h3>
@@ -76,10 +73,6 @@ export class ChooseClassFormController {
     console.log(this.classes[this.selectedClassIndex]);
     this.onSaveEvent(this.classes[this.selectedClassIndex].id);
   };
-
-  onBack = () => {
-    alert("not implemented");
-  };
 }
 
 export default {
@@ -91,7 +84,11 @@ export default {
   },
   data() {
     const controller = new ChooseClassFormController();
-    controller.onSaveEvent = classId => this.$emit("input", classId);
+    controller.onSaveEvent = classId => {
+      this.$emit("input", classId);
+      this.$emit("next");
+    };
+    controller.onBackEvent = () => this.$emit("back");
     return { controller };
   }
 };
