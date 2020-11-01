@@ -4,23 +4,23 @@ module.exports = (sequelize, Sequelize) => {
     //   type: Sequelize.BIGINT,
     // },
     Name: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     Description: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     SizeDescription: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     AgeDescription: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     SpeedDescription: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     LanguageDescription: {
-      type: Sequelize.STRING,
-    },
+      type: Sequelize.STRING
+    }
   });
   return Race;
 };

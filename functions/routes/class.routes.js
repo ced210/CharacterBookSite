@@ -1,4 +1,4 @@
-module.exports = (app) => {
+module.exports = app => {
   const races = require("../controllers/class.controller.js");
 
   var router = require("express").Router();

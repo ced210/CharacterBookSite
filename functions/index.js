@@ -1,8 +1,7 @@
-
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const express = require('express');
-const cors = require('cors');
+const functions = require("firebase-functions");
+const admin = require("firebase-admin");
+const express = require("express");
+const cors = require("cors");
 const app = express();
 app.use(cors({ origin: true }));
 
@@ -45,7 +44,6 @@ const PORT = process.env.PORT || 8081;
 app.get("/", cors(), (req, res) => {
   res.json({ message: `Welcome PORT${PORT} ENV:${process.env.NODE_ENV}` });
 });
-
 
 // app.get('/hello-world', (req, res) => {
 //   return res.status(200).send('Hello World!');

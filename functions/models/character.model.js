@@ -4,19 +4,19 @@ module.exports = (sequelize, Sequelize) => {
     //   type: Sequelize.BIGINT,
     // },
     userId: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.BIGINT
     },
     name: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
     },
     raceId: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.BIGINT
     },
     classId: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.BIGINT
     },
     alignementId: {
-      type: Sequelize.BIGINT,
+      type: Sequelize.BIGINT
     }
   });
   return character;
