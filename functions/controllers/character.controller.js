@@ -13,7 +13,8 @@ exports.create = (req, res) => {
     name: req.body.name,
     raceId: req.body.raceId,
     classId: req.body.classId,
-    alignementId: req.body.alignementId
+    alignementId: req.body.alignementId,
+    isGenderMale: req.body.isGenderMale
   };
 
   // Save Character in the database

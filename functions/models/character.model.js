@@ -17,6 +17,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     alignementId: {
       type: Sequelize.BIGINT
+    },
+    isGenderMale: {
+      type: Sequelize.BOOLEAN
     }
   });
   return character;
