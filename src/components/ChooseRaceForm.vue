@@ -5,7 +5,7 @@
     :is-loading="controller.isLoading"
   >
     <v-row dense>
-      <v-col cols="4" md="2">
+      <v-col cols="4" md="2" class="elevation-2">
         <v-list shaped>
           <v-list-item-group v-model="controller.selectedRaceIndex" mandatory>
             <v-list-item
@@ -21,42 +21,52 @@
           </v-list-item-group>
         </v-list>
       </v-col>
-      <v-col cols="8" md="10" class="elevation-2">
-        <v-row v-if="controller.hoverRace" class="text-left">
-          <v-col cols="2">
-            <v-img
-              src="https://www.placecage.com/300/500"
-              aspect-ratio="1"
-              width="150"
-              height="150"
-              contain
-            />
-          </v-col>
-          <v-col cols="10">
-            <v-row dense>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Description</h3>
-                <p v-text="controller.hoverRace.Description" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Size</h3>
-                <p v-text="controller.hoverRace.SizeDescription" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Age</h3>
-                <p v-text="controller.hoverRace.AgeDescription" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Speed</h3>
-                <p v-text="controller.hoverRace.SpeedDescription" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Languages</h3>
-                <p v-text="controller.hoverRace.LanguageDescription" />
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
+      <v-col cols="8" md="10">
+        <v-container fluid>
+          <v-row v-if="controller.hoverRace" class="text-left">
+            <v-col cols="2">
+              <v-img
+                src="https://www.placecage.com/300/500"
+                aspect-ratio="1"
+                width="150"
+                height="150"
+                contain
+              />
+            </v-col>
+            <v-col cols="10">
+              <v-row dense>
+                <v-col cols="6">
+                  <h3 class="text-decoration-underline">Description</h3>
+                  <p v-text="controller.hoverRace.Description" />
+                </v-col>
+                <v-col cols="6">
+                  <h3 class="text-decoration-underline">Size</h3>
+                  <p v-text="controller.hoverRace.SizeDescription" />
+                </v-col>
+                <v-col cols="6">
+                  <h3 class="text-decoration-underline">Age</h3>
+                  <p v-text="controller.hoverRace.AgeDescription" />
+                </v-col>
+                <v-col cols="6">
+                  <h3 class="text-decoration-underline">Speed</h3>
+                  <p v-text="controller.hoverRace.SpeedDescription" />
+                </v-col>
+                <v-col cols="6">
+                  <h3 class="text-decoration-underline">Languages</h3>
+                  <p v-text="controller.hoverRace.LanguageDescription" />
+                </v-col>
+              </v-row>
+            </v-col>
+            <v-spacer />
+            <v-col cols="10">
+              <p>Gender</p>
+              <v-btn-toggle v-model="controller.isGenderMale">
+                <v-btn :value="true" v-text="'Male'" />
+                <v-btn :value="false" v-text="'Female'" />
+              </v-btn-toggle>
+            </v-col>
+          </v-row>
+        </v-container>
       </v-col>
     </v-row>
   </choose-form-template>
@@ -70,6 +80,8 @@ export class ChooseRaceFormController {
   selectedRaceIndex = 0;
 
   isLoading = false;
+
+  isGenderMale = true;
 
   constructor() {
     this.getRaces().then(() => this.onHoverRace(0));
@@ -95,8 +107,6 @@ export class ChooseRaceFormController {
   };
 
   saveRace = () => {
-    console.log(this.selectedRaceIndex);
-    console.log(this.races[this.selectedRaceIndex]);
     this.onSaveEvent(this.races[this.selectedRaceIndex].id);
   };
 }
@@ -112,8 +122,9 @@ export default {
     const controller = new ChooseRaceFormController();
     controller.onSaveEvent = raceId => {
       this.$emit("input", raceId);
+      this.$emit("changeGender", this.controller.isGenderMale);
       this.$emit("next");
-    }
+    };
     return { controller };
   }
 };

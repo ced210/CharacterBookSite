@@ -7,6 +7,8 @@
     {{
       "raceId " +
         raceId +
+        "isGenderMale " +
+        isGenderMale +
         " classId " +
         classId +
         " alignementId  " +
@@ -71,6 +73,7 @@
       <v-stepper-content step="1">
         <choose-race-form
           v-model="raceId"
+          @changeGender="onChangeGender"
           @next="onNextStep"
           @back="onBackStep"
         />
@@ -127,7 +130,8 @@ export default {
       name: null,
       raceId: 0,
       classId: 0,
-      alignementId: 0
+      alignementId: 0,
+      isGenderMale: true
     };
   },
   methods: {
@@ -146,13 +150,17 @@ export default {
     onClassSave(classId) {
       alert("oh hi mark: " + classId);
     },
+    onChangeGender(isGenderMale) {
+      this.isGenderMale = isGenderMale;
+    },
     onCreateCharacter() {
       CharacterServices.create({
         userId: localStorage.userId,
         name: this.name,
         raceId: this.raceId,
         classId: this.classId,
-        alignementId: this.alignementId
+        alignementId: this.alignementId,
+        isGenderMale: this.isGenderMale
       })
         .then(() => this.$router.push("/characters"))
         .catch(error => console.error(error));
