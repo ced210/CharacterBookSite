@@ -20,6 +20,12 @@ module.exports = (sequelize, Sequelize) => {
     },
     LanguageDescription: {
       type: Sequelize.STRING
+    },
+    minAge: {
+      type: Sequelize.INTEGER
+    },
+    maxAge: {
+      type: Sequelize.INTEGER
     }
   });
   return Race;

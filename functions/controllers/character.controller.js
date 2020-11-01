@@ -14,7 +14,8 @@ exports.create = (req, res) => {
     raceId: req.body.raceId,
     classId: req.body.classId,
     alignementId: req.body.alignementId,
-    isGenderMale: req.body.isGenderMale
+    isGenderMale: req.body.isGenderMale,
+    age: req.body.age
   };
 
   // Save Character in the database
