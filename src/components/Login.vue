@@ -1,11 +1,14 @@
 <template>
   <v-container @keyup.enter="login">
     <v-row align-content="center" justify="center">
-      <v-card width="50%" :loading="isLoading">
+      <v-card
+        :width="$vuetify.breakpoint.smAndDown ? '100%' : '50%'"
+        :loading="isLoading"
+      >
         <v-card-title>
-          <h2>Login tt</h2>
+          <h2>Login</h2>
           <v-spacer />
-          <v-btn color="primary" v-text="'Sign Up'" @click="onSignIn" />
+          <v-btn color="primary" v-text="'Sign Up'" @click="onSignUp" />
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -43,22 +46,22 @@
       </v-card>
     </v-row>
     <v-dialog
-      v-if="isSignInVisible"
-      v-model="isSignInVisible"
+      v-if="isSignUpVisible"
+      v-model="isSignUpVisible"
       persistent
-      max-width="50vw"
+      :max-width="$vuetify.breakpoint.smAndDown ? '100vw' : '50vw'"
     >
-      <sign-in @save="onSaveSignIn" @close="onCloseSignIn" />
+      <sign-up @save="onSaveSignUp" @close="onCloseSignUp" />
     </v-dialog>
   </v-container>
 </template>
 <script>
 import auth from "../auth";
-import SignIn from "./SignIn.vue";
+import SignUp from "./SignUp.vue";
 
 export default {
   components: {
-    SignIn
+    SignUp
   },
   data() {
     return {
@@ -66,7 +69,7 @@ export default {
       password: null,
       error: false,
       success: false,
-      isSignInVisible: false,
+      isSignUpVisible: false,
       isLoading: false,
       alertInfo: {}
     };
@@ -93,14 +96,14 @@ export default {
     }
   },
   methods: {
-    onSignIn() {
-      this.isSignInVisible = true;
+    onSignUp() {
+      this.isSignUpVisible = true;
     },
-    onCloseSignIn() {
-      this.isSignInVisible = false;
+    onCloseSignUp() {
+      this.isSignUpVisible = false;
     },
-    onSaveSignIn() {
-      this.onCloseSignIn();
+    onSaveSignUp() {
+      this.onCloseSignUp();
     },
     login() {
       if (!this.username || !this.password) return;

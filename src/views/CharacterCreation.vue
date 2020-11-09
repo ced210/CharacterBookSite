@@ -17,18 +17,18 @@
         name
     }}
     <v-stepper-header v-if="!$vuetify.breakpoint.smAndDown">
-      <v-stepper-step editable step="1">Chose Your Race</v-stepper-step>
+      <v-stepper-step editable step="1">Race</v-stepper-step>
       <v-divider />
-      <v-stepper-step editable step="2">Choose Your Class</v-stepper-step>
+      <v-stepper-step editable step="2">Class</v-stepper-step>
       <v-divider />
-      <!-- <v-stepper-step step="3" editable>Choose Your Background</v-stepper-step> -->
+      <!-- <v-stepper-step step="3" editable>Background</v-stepper-step> -->
       <!-- <v-divider /> -->
-      <v-stepper-step step="3" editable>Choose Your Alignement</v-stepper-step>
+      <v-stepper-step step="3" editable>Alignement</v-stepper-step>
       <v-divider />
       <v-stepper-step step="4" editable>Name Your Character</v-stepper-step>
     </v-stepper-header>
     <div v-else>
-      <v-stepper-step editable step="1">Chose Your Race</v-stepper-step>
+      <v-stepper-step editable step="1">Race</v-stepper-step>
       <v-stepper-content step="1">
         <choose-race-form
           v-model="raceId"
@@ -38,7 +38,7 @@
           @back="onBackStep"
         />
       </v-stepper-content>
-      <v-stepper-step editable step="2">Choose Your Class</v-stepper-step>
+      <v-stepper-step editable step="2">Class</v-stepper-step>
       <v-stepper-content step="2">
         <choose-class-form
           v-model="classId"
@@ -46,14 +46,14 @@
           @back="onBackStep"
         />
       </v-stepper-content>
-      <!-- <v-stepper-step editable step="3">Choose Your Background</v-stepper-step> -->
+      <!-- <v-stepper-step editable step="3">Background</v-stepper-step> -->
       <!-- <v-stepper-content step="3">
         <v-card>
-          <v-card-title>Choose Your Background</v-card-title>
+          <v-card-title>Background</v-card-title>
           <v-text-field v-text="'Work in progress...'" />
         </v-card>
       </v-stepper-content> -->
-      <v-stepper-step step="3" editable>Choose Your Alignement</v-stepper-step>
+      <v-stepper-step step="3" editable>Alignement</v-stepper-step>
       <v-stepper-content step="3">
         <choose-alignement-form
           v-model="alignementId"
@@ -90,7 +90,7 @@
       </v-stepper-content>
       <!-- <v-stepper-content step="3">
         <v-card>
-          <v-card-title>Choose Your Background</v-card-title>
+          <v-card-title>Background</v-card-title>
           <v-text-field v-text="'Work in progress...'" />
         </v-card>
       </v-stepper-content> -->
