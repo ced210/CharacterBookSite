@@ -17,7 +17,7 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
-      <v-autocomplete
+      <v-select
         v-else
         v-model="controller.selectedItem"
         :items="controller.items"
