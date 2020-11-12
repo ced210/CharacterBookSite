@@ -14,7 +14,7 @@
       </template>
       <template #content="{ selectedItem }">
         <v-row v-if="selectedItem" dense class="text-left">
-          <v-col cols="2">
+          <v-col v-if="!$vuetify.breakpoint.smAndDown" cols="2">
             <v-img
               src="https://www.placecage.com/300/500"
               aspect-ratio="1"
@@ -23,37 +23,21 @@
               contain
             />
           </v-col>
-          <v-col cols="10">
-            <v-row dense>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Description</h3>
-                <p v-text="selectedItem.Description" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Size</h3>
-                <p v-text="selectedItem.SizeDescription" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Age</h3>
-                <p v-text="selectedItem.AgeDescription" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Speed</h3>
-                <p v-text="selectedItem.SpeedDescription" />
-              </v-col>
-              <v-col cols="6">
-                <h3 class="text-decoration-underline">Languages</h3>
-                <p v-text="selectedItem.LanguageDescription" />
-              </v-col>
-            </v-row>
+          <v-col cols="12" md="10">
+            <article>
+              <h3 class="text-decoration-underline" v-text="'Description'" />
+              <p v-text="selectedItem.Description" />
+              <h3 class="text-decoration-underline" v-text="'Size'" />
+              <p v-text="selectedItem.SizeDescription" />
+              <h3 class="text-decoration-underline" v-text="'Age'" />
+              <p v-text="selectedItem.AgeDescription" />
+              <h3 class="text-decoration-underline" v-text="'Speed'" />
+              <p v-text="selectedItem.SpeedDescription" />
+              <h3 class="text-decoration-underline" v-text="'Languages'" />
+              <p v-text="selectedItem.LanguageDescription" />
+            </article>
           </v-col>
-          <v-col cols="4">
-            <v-btn-toggle v-model="controller.isGenderMale">
-              <v-btn :value="true" v-text="'Male'" />
-              <v-btn :value="false" v-text="'Female'" />
-            </v-btn-toggle>
-          </v-col>
-          <v-col cols="8">
+          <v-col cols="6" md="4" class="mt-3">
             <v-slider
               v-model="controller.age"
               label="Age"
@@ -64,11 +48,24 @@
               thumb-label="always"
             />
           </v-col>
+          <v-col cols="12" md="4">
+            <v-btn-toggle v-model="controller.isGenderMale">
+              <v-btn :value="true" v-text="'Male'" />
+              <v-btn :value="false" v-text="'Female'" />
+            </v-btn-toggle>
+          </v-col>
         </v-row>
       </template>
     </choose-list-details>
   </choose-form-template>
 </template>
+<style scoped>
+article {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+}
+</style>
 <script>
 import RaceDataService from "../services/RaceDataService";
 import ChooseListDetails from "./ChooseListDetails.vue";

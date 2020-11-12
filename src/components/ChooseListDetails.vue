@@ -1,7 +1,7 @@
 <template>
   <v-row dense>
-    <v-col cols="4" md="2" class="elevation-2">
-      <v-list shaped>
+    <v-col cols="12" md="2">
+      <v-list v-if="!$vuetify.breakpoint.smAndDown" shaped class="elevation-2">
         <v-list-item-group mandatory>
           <v-list-item
             v-for="(item, i) in controller.items"
@@ -17,8 +17,15 @@
           </v-list-item>
         </v-list-item-group>
       </v-list>
+      <v-autocomplete
+        v-else
+        v-model="controller.selectedItem"
+        :items="controller.items"
+        item-text="Name"
+        return-object
+      />
     </v-col>
-    <v-col cols="8" md="10" class="pt-0 mt-0">
+    <v-col cols="12" md="10" class="pt-0 mt-0">
       <slot name="content" :selectedItem="controller.selectedItem" />
     </v-col>
   </v-row>

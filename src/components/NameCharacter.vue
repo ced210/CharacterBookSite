@@ -1,7 +1,7 @@
 <template>
   <choose-form-template title="Name Yout Character" :back-action="onBack">
     <v-row align="center" justify="center">
-      <v-col cols="8">
+      <v-col cols="12" md="8">
         <v-text-field
           v-model="name"
           solo
