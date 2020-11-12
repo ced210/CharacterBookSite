@@ -145,15 +145,6 @@ export default {
     onBackStep() {
       --this.step;
     },
-    onAlignementSave() {
-      alert("oh hi mark");
-    },
-    onRaceSave(raceId) {
-      alert("oh hi mark: " + raceId);
-    },
-    onClassSave(classId) {
-      alert("oh hi mark: " + classId);
-    },
     onChangeGender(isGenderMale) {
       this.isGenderMale = isGenderMale;
     },

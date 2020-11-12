@@ -3,14 +3,14 @@
     <v-card-title>
       {{ title }}
       <v-spacer />
-      <v-btn v-if="backAction" text @click="backAction" v-text="'back'" />
-      <v-btn
-        v-if="continueAction"
-        color="primary"
-        text
-        @click="continueAction"
-        v-text="'continue'"
-      />
+      <v-btn v-if="backAction" text @click="backAction">
+        <v-icon v-text="'keyboard_arrow_left'" />
+        {{ "back" }}
+      </v-btn>
+      <v-btn v-if="continueAction" color="primary" text @click="continueAction">
+        {{ "continue" }}
+        <v-icon v-text="'keyboard_arrow_right'" />
+      </v-btn>
     </v-card-title>
     <v-card-text>
       <slot />

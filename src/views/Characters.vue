@@ -22,19 +22,9 @@
         <v-card-text>
           <v-row no-gutters>
             <v-col cols="6" class="pt-2 pr-2">
-              <v-badge
-                :content="'lvl: 4'"
-                bordered
-                bottom
-                overlap
-                color="primary"
-                offset-x="40"
-                offset-y="20"
-              >
-                <v-avatar size="100">
-                  <v-img src="https://www.placecage.com/200/200" />
-                </v-avatar>
-              </v-badge>
+              <v-avatar size="100">
+                <v-img src="https://www.placecage.com/200/200" />
+              </v-avatar>
             </v-col>
             <v-col cols="6">
               <v-row no-gutters>
@@ -56,8 +46,15 @@
                 </v-col>
               </v-row>
             </v-col>
+            <v-col cols="12" class="my-2">
+              <!-- <v-toolbar color="transparent" flat dense> -->
+              <v-chip class="mr-1" outlined v-text="'Lvl: 4'" />
+              <v-chip outlined v-text="'AC: 12'" />
+              <v-chip class="ml-1" outlined v-text="'HP: 14'" />
+              <!-- </v-toolbar> -->
+            </v-col>
             <v-col cols="4">
-              <v-row dense class="pt-3">
+              <v-row dense >
                 <v-col cols="12">
                   <v-text-field
                     :value="'8 - 1'"
@@ -127,7 +124,7 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col cols="8" class="pt-3">
+            <v-col cols="8">
               <h3 class="text-decoration-underline">Proficiencies:</h3>
               <p v-text="'Survival'" />
               <p v-text="'Deception'" />
