@@ -6,7 +6,7 @@
     <v-item-group v-model="controller.selectedAlignement" mandatory>
       <v-row dense>
         <v-col
-          v-for="alignement in controller.alignements"
+          v-for="(alignement, i) in controller.alignements"
           :key="alignement.id"
           cols="4"
         >
@@ -18,13 +18,14 @@
                 :dark="active"
                 :elevation="hover ? 12 : 1"
                 :class="{ 'on-hover': hover }"
-                :color="active ? 'primary' : ''"
+                :color="active ? alignementColors[i] : ''"
                 @click="toggle"
               >
                 <v-scroll-y-transition>
                   <div
                     class="subheading flex-grow-1 text-center"
                     v-text="alignement.name"
+                    :class="`${!active ? alignementColors[i] : ''}--text`"
                   />
                 </v-scroll-y-transition>
               </v-card>
@@ -90,7 +91,20 @@ export default {
       this.$emit("next");
     };
     controller.onBackEvent = () => this.$emit("back");
-    return { controller };
+    return {
+      controller,
+      alignementColors: [
+        'green',
+        'blue',
+        'pink',
+        'purple',
+        'orange',
+        'yellow',
+        'beige',
+        'teal',
+        'red'
+      ]
+    };
   }
 };
 </script>
