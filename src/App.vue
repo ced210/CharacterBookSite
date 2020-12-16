@@ -44,13 +44,13 @@
               </v-list-item-icon>
               <v-list-item-title>Character Creation</v-list-item-title>
             </v-list-item>
-            <v-list-item to="/about">
+            <v-list-item v-if="isDev" to="/about">
               <v-list-item-icon>
                 <v-icon>info</v-icon>
               </v-list-item-icon>
               <v-list-item-title>About</v-list-item-title>
             </v-list-item>
-            <v-list-item to="/admin">
+            <v-list-item v-if="isDev" to="/admin">
               <v-list-item-icon>
                 <v-icon>settings</v-icon>
               </v-list-item-icon>
@@ -109,7 +109,8 @@ export default {
       drawer: false,
       group: false,
       loggedIn: auth.loggedIn(),
-      user: auth.getUser()
+      user: auth.getUser(),
+      isDev: localStorage.isDeveloppementMode
     };
   },
   created() {

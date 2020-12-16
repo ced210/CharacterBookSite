@@ -4,18 +4,20 @@
     non-linear
     :vertical="$vuetify.breakpoint.smAndDown"
   >
-    {{
-      "raceId " +
-        raceId +
-        "isGenderMale " +
-        isGenderMale +
-        " classId " +
-        classId +
-        " alignementId  " +
-        alignementId +
-        " name " +
-        name
-    }}
+    <div v-if="isDev">
+      {{
+        "raceId " +
+          raceId +
+          "isGenderMale " +
+          isGenderMale +
+          " classId " +
+          classId +
+          " alignementId  " +
+          alignementId +
+          " name " +
+          name
+      }}
+    </div>
     <v-stepper-header v-if="!$vuetify.breakpoint.smAndDown">
       <v-stepper-step editable step="1">Race</v-stepper-step>
       <v-divider />
@@ -135,7 +137,8 @@ export default {
       classId: 0,
       alignementId: 0,
       isGenderMale: true,
-      age: 0
+      age: 0,
+      isDev: localStorage.isDeveloppementMode
     };
   },
   methods: {
