@@ -56,6 +56,12 @@
               </v-list-item-icon>
               <v-list-item-title>Admin</v-list-item-title>
             </v-list-item>
+            <v-list-item v-if="isDev" to="/sandbox">
+              <v-list-item-icon>
+                <v-icon>code</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Sandbox</v-list-item-title>
+            </v-list-item>
           </v-list-item-group>
         </v-list>
         <template v-slot:append>

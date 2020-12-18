@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Characters from "../views/Characters.vue";
 import CharacterCreation from "../views/CharacterCreation.vue";
 import Admin from "../views/Admin.vue";
+import Sandbox from "../views/Sandbox.vue";
 import Login from "../components/Login.vue";
 import auth from "../auth";
 const ChooseFormTemplate = () => import("../components/ChooseFormTemplate");
@@ -53,6 +54,11 @@ const routes = [
     path: "/admin",
     name: "Admin",
     component: Admin,
+    beforeEnter: requireAuth
+  }, {
+    path: "/sandbox",
+    name: "Sandbox",
+    component: Sandbox,
     beforeEnter: requireAuth
   },
   {
