@@ -143,13 +143,7 @@
           :key="index"
           md="6"
         >
-          <v-card
-            width="50vw"
-            class="mx-2"
-            height="50vh"
-            shaped
-            @click="toggle"
-          >
+          <v-card width="50vw" class="mx-2" height="50vh" shaped>
             <v-card-title>{{ character.name }}</v-card-title>
             <v-card-text>
               <v-row no-gutters>
@@ -177,15 +171,12 @@
                       />
                     </v-col>
                     <v-col cols="12" class="my-2">
-                      <!-- <v-toolbar color="transparent" flat dense> -->
                       <v-chip class="mr-1" outlined v-text="'Lvl: 4'" />
                       <v-chip outlined v-text="'AC: 12'" />
                       <v-chip class="ml-1" outlined v-text="'HP: 14'" />
-                      <!-- </v-toolbar> -->
                     </v-col>
                   </v-row>
                 </v-col>
-
                 <v-col cols="4" md="12">
                   <v-row dense>
                     <v-col cols="12" md="2">
@@ -274,11 +265,11 @@ import CharacterServices from "../services/CharacterServices";
 
 class CharactersController {
   characters = null;
+
   constructor() {
-    this.characters = CharacterServices.findAllByUser().then(c => {
-      console.log(c);
-      return (this.characters = c.data);
-    });
+    this.characters = CharacterServices.getAllFullByUserId(
+      localStorage.userId
+    ).then(c => (this.characters = c.data));
   }
 }
 
@@ -291,11 +282,5 @@ export default {
       model: null
     };
   },
-  methods: {
-    async getCharacters() {
-      const x = await CharacterServices.findAllByUser();
-      console.log(x.data);
-    }
-  }
 };
 </script>

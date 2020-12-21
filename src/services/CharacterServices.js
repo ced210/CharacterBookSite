@@ -1,11 +1,11 @@
 import http from "../http-common";
 
 class CharacterServices {
-  create(newCharacter) {
+  save(newCharacter) {
     return http.post(`/characters`, newCharacter);
   }
-  findAllByUser = async () => {
-    return await http.get(`/characters/${localStorage.userId}`);
+  getAllFullByUserId = async userId => {
+    return await http.get(`/characters/${userId}`);
   };
 }
 

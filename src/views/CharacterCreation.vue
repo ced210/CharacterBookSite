@@ -155,7 +155,7 @@ export default {
       this.age = age;
     },
     onCreateCharacter() {
-      CharacterServices.create({
+      CharacterServices.save({
         userId: localStorage.userId,
         name: this.name,
         raceId: this.raceId,

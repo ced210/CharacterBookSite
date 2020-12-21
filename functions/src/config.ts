@@ -1,14 +1,14 @@
 import { ConnectionOptions, Connection, createConnection, getConnection } from "typeorm";
 import "reflect-metadata";
 
-export const prod = process.env.NODE_ENV === 'production';
+export const isProd : boolean = process.env.NODE_ENV === 'production';
 
 let HOST = "localhost";
 let USER = "root";
 let PASSWORD = "!Book!17";
 let DB = "characterbook2";
 
-if (prod) {
+if (isProd) {
   HOST = "SG-characterbook-38678.servers.mongodirector.com";
   USER = "CedPC";
   DB = "characterbook";
@@ -21,13 +21,13 @@ if (prod) {
 export const config: ConnectionOptions = {
     name: 'characterbook2',
     type: 'mysql',
-    host: HOST,
     port: 3306,
+    host: HOST,
     username: USER,
     password: PASSWORD,
     database: DB,
-    // synchronize: prod,
-    synchronize: true,
+    synchronize: !isProd,
+    logging: !isProd,
     entities: [
         'lib/entity/**/*.js'
     ],
