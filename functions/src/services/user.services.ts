@@ -13,7 +13,7 @@ exports.authenticate = async (username, password) => {
   // search for attributes
   const connection = await connect();
   const userRepo = connection.getRepository(User);
-  return await userRepo.count({ username, password })
-		.then(data => Boolean(data))
+  return await userRepo.findOne({ username, password })
+		.then(data => data)
 		.catch(err => err);
 }

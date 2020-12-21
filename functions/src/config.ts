@@ -42,8 +42,15 @@ export const connect = async () => {
         "Connection has been established successfully."
         );
     } catch (error) {
-        connection = await createConnection(config);
-        // console.error("Unable to connect to the database:", error);
+        try {
+            connection = await createConnection(config);
+            console.log(
+            "\x1b[36m%s\x1b[0m",
+            "Connection has been created successfully."
+            );
+        } catch (error) {
+            console.error("Unable to connect to the database:", error);
+        }
     }
 
     return connection;

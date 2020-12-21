@@ -31,7 +31,7 @@
                 <v-row no-gutters>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="character.race.Name"
+                      v-model="character.race.name"
                       label="Race"
                       readonly
                       hide-details
@@ -39,7 +39,7 @@
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="character.className"
+                      v-model="character.class.name"
                       label="Class"
                       readonly
                       hide-details
@@ -162,7 +162,7 @@
                   <v-row no-gutters>
                     <v-col cols="6">
                       <v-text-field
-                        v-model="character.race.Name"
+                        v-model="character.race.name"
                         label="Race"
                         readonly
                         hide-details
@@ -170,7 +170,7 @@
                     </v-col>
                     <v-col cols="6">
                       <v-text-field
-                        v-model="character.className"
+                        v-model="character.class.name"
                         label="Class"
                         readonly
                         hide-details
