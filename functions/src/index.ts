@@ -6,6 +6,7 @@ const app = express();
 //import routes
 require("./routes/class.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/race.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8081;

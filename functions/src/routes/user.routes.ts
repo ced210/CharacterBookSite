@@ -9,5 +9,5 @@ module.exports = app => {
   // Create a new Race
   router.post("/", users.create);
 
-  app.use("/api/user", router);
+  app.use("/api/users", router);
 };
