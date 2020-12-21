@@ -10,7 +10,7 @@
       :items="controller.classes"
     >
       <template #listItem="{ item }">
-        {{ item.Name }}
+        {{ item.name }}
       </template>
       <template #content="{ selectedItem }">
         <v-row v-if="selectedItem" dense class="text-left">
@@ -27,7 +27,7 @@
             <v-row dense>
               <v-col lg="6">
                 <h3 class="text-decoration-underline">Name</h3>
-                <p v-text="selectedItem.Name" />
+                <p v-text="selectedItem.name" />
               </v-col>
             </v-row>
           </v-col>
@@ -68,7 +68,7 @@ export default {
   props: {
     value: {
       type: Number,
-      default: () => ({})
+      default: () => null
     }
   },
   data() {

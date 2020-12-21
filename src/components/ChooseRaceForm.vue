@@ -10,7 +10,7 @@
       :items="controller.races"
     >
       <template #listItem="{ item }">
-        {{ item.Name }}
+        {{ item.name }}
       </template>
       <template #content="{ selectedItem }">
         <v-row v-if="selectedItem" dense class="text-left">
@@ -26,15 +26,15 @@
           <v-col cols="12" md="10">
             <article>
               <h3 class="text-decoration-underline" v-text="'Description'" />
-              <p v-text="selectedItem.Description" />
+              <p v-text="selectedItem.description" />
               <h3 class="text-decoration-underline" v-text="'Size'" />
-              <p v-text="selectedItem.SizeDescription" />
+              <p v-text="selectedItem.sizeDescription" />
               <h3 class="text-decoration-underline" v-text="'Age'" />
-              <p v-text="selectedItem.AgeDescription" />
+              <p v-text="selectedItem.ageDescription" />
               <h3 class="text-decoration-underline" v-text="'Speed'" />
-              <p v-text="selectedItem.SpeedDescription" />
+              <p v-text="selectedItem.speedDescription" />
               <h3 class="text-decoration-underline" v-text="'Languages'" />
-              <p v-text="selectedItem.LanguageDescription" />
+              <p v-text="selectedItem.languageDescription" />
             </article>
           </v-col>
           <v-col cols="6" md="4" class="mt-3">
