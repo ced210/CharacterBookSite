@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col v-for="(skill, i) in skills" :key="i" md="2" cols="12">
+    <v-col v-for="(skill, i) in skills.skillScores" :key="i" md="2" cols="12">
       <v-sheet elevation="3" rounded width="15vw">
         <v-row no-gutters>
           <v-col cols="12" align-self="center">
@@ -38,27 +38,12 @@
   </v-row>
 </template>
 <script>
-class SkillScore {
-  name = "";
-  score = 0;
-  constructor(name, score) {
-    this.name = name;
-    this.score = score;
-  }
-}
-const skillsMock = [
-  new SkillScore("Strenght", 8),
-  new SkillScore("Dexterity", 8),
-  new SkillScore("Constitution", 8),
-  new SkillScore("Intelligence", 8),
-  new SkillScore("Widsom", 8),
-  new SkillScore("Charisma", 8)
-];
+import { SkillScores } from "../components/ChooseSkillScoreForm.vue";
 export default {
   props: {
     value: {
-      type: Array,
-      default: () => skillsMock
+      type: SkillScores,
+      default: () => new SkillScores()
     }
   },
   data() {

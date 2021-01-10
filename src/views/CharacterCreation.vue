@@ -15,7 +15,9 @@
           " alignementId  " +
           alignementId +
           " name " +
-          name
+          name +
+          "skills scores " +
+          skillScores[0]
       }}
     </div>
     <v-stepper-header v-if="!$vuetify.breakpoint.smAndDown">
@@ -23,11 +25,11 @@
       <v-divider />
       <v-stepper-step editable step="2">Class</v-stepper-step>
       <v-divider />
-      <!-- <v-stepper-step step="3" editable>Background</v-stepper-step> -->
-      <!-- <v-divider /> -->
-      <v-stepper-step step="3" editable>Alignement</v-stepper-step>
+      <v-stepper-step editable step="3">Skill Score</v-stepper-step>
       <v-divider />
-      <v-stepper-step step="4" editable>Name Your Character</v-stepper-step>
+      <v-stepper-step step="4" editable>Alignement</v-stepper-step>
+      <v-divider />
+      <v-stepper-step step="5" editable>Name Your Character</v-stepper-step>
     </v-stepper-header>
     <div v-else>
       <v-stepper-step editable step="1">Race</v-stepper-step>
@@ -48,23 +50,25 @@
           @back="onBackStep"
         />
       </v-stepper-content>
-      <!-- <v-stepper-step editable step="3">Background</v-stepper-step> -->
-      <!-- <v-stepper-content step="3">
-        <v-card>
-          <v-card-title>Background</v-card-title>
-          <v-text-field v-text="'Work in progress...'" />
-        </v-card>
-      </v-stepper-content> -->
-      <v-stepper-step step="3" editable>Alignement</v-stepper-step>
+      <v-stepper-step editable step="3">Skill Score</v-stepper-step>
       <v-stepper-content step="3">
+        <choose-skill-score-form
+          v-if="step == 3"
+          v-model="skillScores"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
+      </v-stepper-content>
+      <v-stepper-step step="4" editable>Alignement</v-stepper-step>
+      <v-stepper-content step="4">
         <choose-alignement-form
           v-model="alignementId"
           @next="onNextStep"
           @back="onBackStep"
         />
       </v-stepper-content>
-      <v-stepper-step step="4" editable>Name Your Character</v-stepper-step>
-      <v-stepper-content step="4">
+      <v-stepper-step step="5" editable>Name Your Character</v-stepper-step>
+      <v-stepper-content step="6">
         <name-character
           v-model="name"
           @create="onCreateCharacter"
@@ -90,20 +94,22 @@
           @back="onBackStep"
         />
       </v-stepper-content>
-      <!-- <v-stepper-content step="3">
-        <v-card>
-          <v-card-title>Background</v-card-title>
-          <v-text-field v-text="'Work in progress...'" />
-        </v-card>
-      </v-stepper-content> -->
       <v-stepper-content step="3">
+        <choose-skill-score-form
+          v-if="step == 3"
+          v-model="skillScores"
+          @next="onNextStep"
+          @back="onBackStep"
+        />
+      </v-stepper-content>
+      <v-stepper-content step="4">
         <choose-alignement-form
           v-model="alignementId"
           @next="onNextStep"
           @back="onBackStep"
         />
       </v-stepper-content>
-      <v-stepper-content step="4">
+      <v-stepper-content step="5">
         <name-character
           v-model="name"
           @create="onCreateCharacter"
@@ -120,13 +126,15 @@ import ChooseClassForm from "../components/ChooseClassForm.vue";
 import ChooseAlignementForm from "../components/ChooseAlignementForm.vue";
 import NameCharacter from "../components/NameCharacter.vue";
 import CharacterServices from "../services/CharacterServices";
+import ChooseSkillScoreForm from "../components/ChooseSkillScoreForm.vue";
 
 export default {
   components: {
     ChooseRaceForm,
     ChooseClassForm,
     ChooseAlignementForm,
-    NameCharacter
+    NameCharacter,
+    ChooseSkillScoreForm
   },
   name: "CharacterCreation",
   data() {
@@ -138,6 +146,7 @@ export default {
       alignementId: 0,
       isGenderMale: true,
       age: 0,
+      skillScores: [],
       isDev: localStorage.isDeveloppementMode
     };
   },
