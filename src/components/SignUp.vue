@@ -1,13 +1,11 @@
 <template>
-  <v-card :loading="isLoading">
-    <v-card-title>
-      <h2>Sign Up</h2>
-      <v-spacer />
-      <v-btn icon @click="close">
-        <v-icon v-text="'close'" />
-      </v-btn>
-    </v-card-title>
-    <v-card-text>
+  <form-template
+    :loading="isLoading"
+    :title="'Sign Up'"
+    :close-func="close"
+    :save-func="validateForm"
+  >
+    <template slot="body">
       <v-container>
         <v-form ref="form">
           <v-col cols="12">
@@ -52,20 +50,19 @@
           </v-col>
         </v-form>
       </v-container>
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer />
-      <v-btn text v-text="'close'" @click="close" />
-      <v-btn color="primary" v-text="'Sign Up'" @click="validateForm" />
-    </v-card-actions>
-  </v-card>
+    </template>
+  </form-template>
 </template>
 
 <script>
 import UserServices from "../services/UserServices";
+import FormTemplate from "./Template/FormTemplate.vue";
 
 export default {
   name: "SignUp",
+  components: {
+    FormTemplate
+  },
   data() {
     return {
       username: null,
@@ -96,6 +93,7 @@ export default {
   },
   methods: {
     validateForm() {
+      console.log(this.$refs);
       if (this.$refs.form.validate()) this.createUser();
       else alert("asdd");
     },

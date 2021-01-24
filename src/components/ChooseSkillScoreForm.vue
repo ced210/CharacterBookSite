@@ -26,9 +26,11 @@
       v-if="controller.isMethodeSelectionFormVisible"
       v-model="controller.isMethodeSelectionFormVisible"
     >
-      <v-card>
-        <v-card-title v-text="'Choose a skill score selection methode'" />
-        <v-card-text>
+      <form-template
+        title="Choose a skill score selection methode"
+        :close-func="controller.onCloseMethodeSelectionForm"
+      >
+        <template #body>
           <v-row>
             <v-col
               v-for="(methode, i) in controller.methodeChoices"
@@ -42,6 +44,7 @@
                   <v-spacer />
                   <v-btn
                     text
+                    outlined
                     title="select this methode"
                     @click="controller.onSelectMethodeClick(i)"
                   >
@@ -53,8 +56,8 @@
               </v-card>
             </v-col>
           </v-row>
-        </v-card-text>
-      </v-card>
+        </template>
+      </form-template>
     </v-dialog>
   </choose-form-template>
 </template>
@@ -89,6 +92,7 @@ export class SkillScores {
 
 import SkillScoreChoicePointPool from "../components/SkillScoreChoicePointPool.vue";
 import SkillScoreChoiceStandardArray from "../components/SkillScoreChoiceStandardArray.vue";
+import FormTemplate from "./Template/FormTemplate.vue";
 
 export class ChooseSkillScoreFormController {
   isMethodeSelectionFormVisible = true;
@@ -130,12 +134,16 @@ export class ChooseSkillScoreFormController {
   };
 
   onChangeMethodeClick = () => (this.isMethodeSelectionFormVisible = true);
+
+  onCloseMethodeSelectionForm = () =>
+    (this.isMethodeSelectionFormVisible = false);
 }
 
 export default {
   components: {
     SkillScoreChoicePointPool,
-    SkillScoreChoiceStandardArray
+    SkillScoreChoiceStandardArray,
+    FormTemplate
   },
   data() {
     const controller = new ChooseSkillScoreFormController();
