@@ -181,7 +181,7 @@
                   <v-row dense>
                     <v-col cols="12" md="2">
                       <v-text-field
-                        :value="'8 - 1'"
+                        :value="character.strenghtScore"
                         label="Strength"
                         readonly
                         hide-details
@@ -192,7 +192,7 @@
                     </v-col>
                     <v-col cols="12" md="2">
                       <v-text-field
-                        :value="'16 + 2'"
+                        :value="character.dexterityScrore"
                         label="Dexterity"
                         readonly
                         hide-details
@@ -203,7 +203,7 @@
                     </v-col>
                     <v-col cols="12" md="2">
                       <v-text-field
-                        :value="'10 + 0'"
+                        :value="character.constitutionScore"
                         label="Constitution"
                         readonly
                         hide-details
@@ -214,7 +214,7 @@
                     </v-col>
                     <v-col cols="12" md="2">
                       <v-text-field
-                        :value="'19 + 4'"
+                        :value="character.intelligenceScore"
                         label="Inteligence"
                         readonly
                         hide-details
@@ -225,7 +225,7 @@
                     </v-col>
                     <v-col cols="12" md="2">
                       <v-text-field
-                        :value="'14 + 2'"
+                        :value="controller.formatSkillScore(character.widsomScore)"
                         label="Wisdom"
                         readonly
                         hide-details
@@ -236,7 +236,7 @@
                     </v-col>
                     <v-col cols="12" md="2">
                       <v-text-field
-                        :value="'10 + 0'"
+                        :value="character.charismaScore"
                         label="Charisma"
                         readonly
                         hide-details
@@ -266,10 +266,18 @@ import CharacterServices from "../services/CharacterServices";
 class CharactersController {
   characters = null;
 
+  formatSkillScore = score => {
+    const mod = Math.floor((score - 10) / 2);
+    return (mod >= 0 ? "+" : "") + mod;
+  };
+
   constructor() {
     this.characters = CharacterServices.getAllFullByUserId(
       localStorage.userId
-    ).then(c => (this.characters = c.data));
+    ).then(c => {
+      this.characters = c.data;
+      console.log();
+    });
   }
 }
 
