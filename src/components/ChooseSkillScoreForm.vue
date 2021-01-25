@@ -148,7 +148,7 @@ export default {
   data() {
     const controller = new ChooseSkillScoreFormController();
     controller.onSaveEvent = () => {
-      this.$emit("change", controller.skillScores);
+      this.$emit("input", controller.skillScores);
       this.$emit("next");
     };
     controller.onBackEvent = () => this.$emit("back");

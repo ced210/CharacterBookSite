@@ -17,7 +17,7 @@
           " name " +
           name +
           "skills scores " +
-          skillScores[0]
+          skillScores
       }}
     </div>
     <v-stepper-header v-if="!$vuetify.breakpoint.smAndDown">
@@ -164,6 +164,7 @@ export default {
       this.age = age;
     },
     onCreateCharacter() {
+      console.log(this.skillScores);
       CharacterServices.save({
         userId: localStorage.userId,
         name: this.name,
@@ -171,7 +172,24 @@ export default {
         classId: this.classId,
         alignementId: this.alignementId,
         isGenderMale: this.isGenderMale,
-        age: this.age
+        age: this.age,
+        strenghtScore: this.skillScores.skillScores.find(
+          x => x.name === "Strenght"
+        ).score,
+        constitutionScore: this.skillScores.skillScores.find(
+          x => x.name === "Constitution"
+        ).score,
+        dexterityScrore: this.skillScores.skillScores.find(
+          x => x.name === "Dexterity"
+        ).score,
+        intelligenceScore: this.skillScores.skillScores.find(
+          x => x.name === "Intelligence"
+        ).score,
+        widsomScore: this.skillScores.skillScores.find(x => x.name === "Widsom")
+          .score,
+        charismaScore: this.skillScores.skillScores.find(
+          x => x.name === "Charisma"
+        ).score
       })
         .then(() => this.$router.push("/characters"))
         .catch(error => console.error(error));

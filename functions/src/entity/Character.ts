@@ -26,6 +26,24 @@ export class Character extends BaseEntity {
 	@Column('int')
 	age: number;
 
+	@Column('int', {default: 0})
+	strenghtScore: number;
+
+	@Column('int', {default: 0})
+	constitutionScore: number;
+
+	@Column('int', {default: 0})
+	dexterityScrore: number;
+
+	@Column('int', {default: 0})
+	intelligenceScore: number;
+
+	@Column('int', {default: 0})
+	widsomScore: number;
+
+	@Column('int', {default: 0})
+	charismaScore: number;
+
 	@CreateDateColumn()
 	create_time: Date;
 

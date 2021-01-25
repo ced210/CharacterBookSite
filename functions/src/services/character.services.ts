@@ -14,17 +14,11 @@ exports.getAllFullByUserId = async (userId: number) => {
   const connection = await connect();
   const characterRepo = connection.getRepository(Character);
   return await characterRepo.find({ userId: userId })
-    .then(async characters =>
-    {
-      const cc = await characters.map(async (c) => ({
-        ...c,
-        userId: null,
-        race: await raceServices.getById(c.raceId),
-        class: await classServices.getById(c.classId),
-        //TODO alignement,
-        
-      }));
-      return await Promise.all(cc);
-    })
+    .then(async characters => await Promise.all(characters.map(async (c) => ({
+      ...c,
+      userId: null,
+      race: await raceServices.getById(c.raceId),
+      class: await classServices.getById(c.classId),
+    }))))
 		.catch(err => err);
 };
