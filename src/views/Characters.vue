@@ -48,73 +48,21 @@
                 </v-row>
               </v-col>
               <v-col cols="12" class="my-2">
-                <!-- <v-toolbar color="transparent" flat dense> -->
                 <v-chip class="mr-1" outlined v-text="'Lvl: 4'" />
                 <v-chip outlined v-text="'AC: 12'" />
                 <v-chip class="ml-1" outlined v-text="'HP: 14'" />
-                <!-- </v-toolbar> -->
               </v-col>
               <v-col cols="4" md="12">
                 <v-row dense>
-                  <v-col cols="12" md="2">
+                  <v-col
+                    cols="12"
+                    md="2"
+                    v-for="(skillScore, i) in character.skillScores"
+                    :key="i"
+                  >
                     <v-text-field
-                      :value="'8 - 1'"
-                      label="Strength"
-                      readonly
-                      hide-details
-                      dense
-                      round
-                      filled
-                    />
-                  </v-col>
-                  <v-col cols="12" md="2">
-                    <v-text-field
-                      :value="'16 + 2'"
-                      label="Dexterity"
-                      readonly
-                      hide-details
-                      dense
-                      round
-                      filled
-                    />
-                  </v-col>
-                  <v-col cols="12" md="2">
-                    <v-text-field
-                      :value="'10 + 0'"
-                      label="Constitution"
-                      readonly
-                      hide-details
-                      dense
-                      round
-                      filled
-                    />
-                  </v-col>
-                  <v-col cols="12" md="2">
-                    <v-text-field
-                      :value="'19 + 4'"
-                      label="Inteligence"
-                      readonly
-                      hide-details
-                      dense
-                      round
-                      filled
-                    />
-                  </v-col>
-                  <v-col cols="12" md="2">
-                    <v-text-field
-                      :value="'14 + 2'"
-                      label="Wisdom"
-                      readonly
-                      hide-details
-                      dense
-                      round
-                      filled
-                    />
-                  </v-col>
-                  <v-col cols="12" md="2">
-                    <v-text-field
-                      :value="'10 + 0'"
-                      label="Charisma"
+                      :value="skillScore.formatScore()"
+                      :label="skillScore.abreviate()"
                       readonly
                       hide-details
                       dense
@@ -179,65 +127,15 @@
                 </v-col>
                 <v-col cols="4" md="12">
                   <v-row dense>
-                    <v-col cols="12" md="2">
+                    <v-col
+                      cols="12"
+                      md="2"
+                      v-for="(skillScore, i) in character.skillScores"
+                      :key="i"
+                    >
                       <v-text-field
-                        :value="character.strenghtScore"
-                        label="Strength"
-                        readonly
-                        hide-details
-                        dense
-                        round
-                        filled
-                      />
-                    </v-col>
-                    <v-col cols="12" md="2">
-                      <v-text-field
-                        :value="character.dexterityScrore"
-                        label="Dexterity"
-                        readonly
-                        hide-details
-                        dense
-                        round
-                        filled
-                      />
-                    </v-col>
-                    <v-col cols="12" md="2">
-                      <v-text-field
-                        :value="character.constitutionScore"
-                        label="Constitution"
-                        readonly
-                        hide-details
-                        dense
-                        round
-                        filled
-                      />
-                    </v-col>
-                    <v-col cols="12" md="2">
-                      <v-text-field
-                        :value="character.intelligenceScore"
-                        label="Inteligence"
-                        readonly
-                        hide-details
-                        dense
-                        round
-                        filled
-                      />
-                    </v-col>
-                    <v-col cols="12" md="2">
-                      <v-text-field
-                        :value="controller.formatSkillScore(character.widsomScore)"
-                        label="Wisdom"
-                        readonly
-                        hide-details
-                        dense
-                        round
-                        filled
-                      />
-                    </v-col>
-                    <v-col cols="12" md="2">
-                      <v-text-field
-                        :value="character.charismaScore"
-                        label="Charisma"
+                        :value="skillScore.formatScore()"
+                        :label="skillScore.abreviate()"
                         readonly
                         hide-details
                         dense
@@ -259,23 +157,28 @@
     </v-container>
   </div>
 </template>
-
 <script>
+import { SkillScore } from "../components/ChooseSkillScoreForm.vue";
 import CharacterServices from "../services/CharacterServices";
 
 class CharactersController {
   characters = null;
 
-  formatSkillScore = score => {
-    const mod = Math.floor((score - 10) / 2);
-    return (mod >= 0 ? "+" : "") + mod;
-  };
-
   constructor() {
     this.characters = CharacterServices.getAllFullByUserId(
       localStorage.userId
     ).then(c => {
-      this.characters = c.data;
+      this.characters = c.data.map(c => ({
+        ...c,
+        skillScores: [
+          new SkillScore("Strenght", c.strenghtScore),
+          new SkillScore("Dexterity", c.dexterityScrore),
+          new SkillScore("Constitution", c.constitutionScore),
+          new SkillScore("Intelligence", c.intelligenceScore),
+          new SkillScore("Widsom", c.widsomScore),
+          new SkillScore("Charisma", c.charismaScore)
+        ]
+      }));
       console.log();
     });
   }

@@ -69,6 +69,21 @@ export class SkillScore {
     this.name = name;
     this.score = score;
   }
+
+  abreviate = () => {
+    if (this.name === "Strenght") return "Str.";
+    else if (this.name === "Dexterity") return "Dex.";
+    else if (this.name === "Constitution") return "Con.";
+    else if (this.name === "Intelligence") return "Int.";
+    else if (this.name === "Widsom") return "Wis.";
+    else if (this.name === "Charisma") return "Chr.";
+    else return "";
+  };
+
+  formatScore = () => {
+    const mod = Math.floor((this.score - 10) / 2);
+    return this.score + (mod >= 0 ? "+" : "") + mod;
+  };
 }
 export class SkillScores {
   skillScores = [];
