@@ -22,7 +22,7 @@
                 @click="toggle"
               >
                 <v-scroll-y-transition>
-                  <div
+                  <b
                     class="subheading flex-grow-1 text-center"
                     v-text="alignement.name"
                     :class="`${!active ? alignementColors[i] : ''}--text`"

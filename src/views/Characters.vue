@@ -94,14 +94,15 @@
           <v-card width="50vw" class="mx-2" height="50vh" shaped>
             <v-card-title>{{ character.name }}</v-card-title>
             <v-card-text>
-              <v-row no-gutters>
-                <v-col cols="4" class="pt-2 pr-2">
+              <v-row dense>
+                <v-col cols="3">
                   <v-avatar size="100">
                     <v-img src="https://www.placecage.com/200/200" />
                   </v-avatar>
                 </v-col>
-                <v-col cols="7">
-                  <v-row no-gutters>
+                <v-spacer />
+                <v-col cols="9">
+                  <v-row dense>
                     <v-col cols="6">
                       <v-text-field
                         v-model="character.race.name"
@@ -192,6 +193,6 @@ export default {
       controller,
       model: null
     };
-  },
+  }
 };
 </script>

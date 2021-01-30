@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app :style="{ background: $vuetify.theme.themes[theme].background }">
       <v-app-bar
         id="nav"
         color="primary"
@@ -123,6 +123,11 @@ export default {
     auth.onChange = loggedIn => {
       this.loggedIn = loggedIn;
     };
+  },
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    }
   }
 };
 </script>
