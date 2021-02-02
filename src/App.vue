@@ -8,6 +8,7 @@
         app
         collapse-on-scroll
         scroll-target="#scrolling-techniques-1"
+        src="./assets/wood.jpg"
       >
         <v-app-bar-nav-icon v-if="loggedIn" @click="drawer = true" />
         <v-toolbar-title v-text="'Character Book'" />

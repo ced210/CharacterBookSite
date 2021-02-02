@@ -94,15 +94,15 @@ export default {
     return {
       controller,
       alignementColors: [
-        'green',
-        'blue',
-        'pink',
-        'purple',
-        'orange',
-        'yellow',
-        'beige',
-        'teal',
-        'red'
+        "green",
+        "blue",
+        "pink",
+        "purple",
+        "orange",
+        "yellow",
+        "beige",
+        "teal",
+        "red"
       ]
     };
   }
