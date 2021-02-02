@@ -1,5 +1,5 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from './Role';
 @Entity()
 export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
@@ -16,4 +16,7 @@ export class User extends BaseEntity {
 
     @CreateDateColumn()
     create_time: Date;
+
+    @ManyToOne(() => Role, role => role)
+    role: Role;
 }

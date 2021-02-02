@@ -3,6 +3,8 @@ import "reflect-metadata";
 
 export const isProd : boolean = process.env.NODE_ENV === 'production';
 
+export const secret: string = 'coque-licot';
+
 let HOST = "localhost";
 let USER = "root";
 let PASSWORD = "!Book!17";

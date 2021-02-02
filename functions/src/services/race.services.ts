@@ -4,8 +4,8 @@ import { Race } from '../entity/Race';
 // Retrieve all Classe from the database.
 exports.getAll = async () => {
   const connection = await connect();
-  const classesRepo = connection.getRepository(Race);
-	return await classesRepo.find()
+  const racesRepo = connection.getRepository(Race);
+	return await racesRepo.find()
     .then(data => data)
     .catch(err => err);
 };
@@ -13,8 +13,8 @@ exports.getAll = async () => {
 // Find a single Class with an id
 exports.getById = async (id: number) => {
   const connection = await connect();
-  const classesRepo = connection.getRepository(Race);
-	return await classesRepo.findOne(id)
+  const racesRepo = connection.getRepository(Race);
+	return await racesRepo.findOne(id)
 		.then(data => data)
 		.catch(err => err); 
 };

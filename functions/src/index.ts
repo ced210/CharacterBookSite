@@ -15,6 +15,7 @@ require("./routes/user.routes")(app);
 require("./routes/class.routes")(app);
 require("./routes/race.routes")(app);
 require("./routes/character.routes")(app);
+require("./routes/auth.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8081;
